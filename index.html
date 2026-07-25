@@ -914,6 +914,7 @@
 <!-- ============ FIREBASE（Google 登入用） ============ -->
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
 
 <script>
 /* ==================================================================
@@ -930,23 +931,32 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
+const db = firebase.firestore();
 
-/* 只有這個 Google 帳號登入時，才會被當成「管理員」，看得到編輯/儲存功能 */
-const ADMIN_EMAIL = 'llomoll5566@gmail.com';
+/* ------------------------------------------------------------------
+   管理員名單
+   - 用 Google 帳號的 email 判斷是不是管理員。
+   - 廟方有多位管理員時，直接把 Gmail 加進這個陣列即可，
+     不需要改任何其他程式碼。
+   ------------------------------------------------------------------ */
+const ADMIN_EMAILS = [
+  'llomoll5566@gmail.com',
+  // 'temple-admin-2@gmail.com',   // 例：廟方管理員的 Gmail，複製這行改成他的信箱即可
+];
 
 const CONTENT_KEY_PREFIX = 'content-override:';
 const NOTICES_CONTAINER_ID = 'edit-c3';
 
 /* ------------------------------------------------------------------
    STORAGE LAYER
-   - Inside Claude's preview, window.storage is a real shared cloud
-     store (works for every visitor).
-   - Opened as a plain downloaded file (or any normal web host) that
-     API does not exist, so we fall back to the browser's localStorage
-     just so you can test the edit/save flow on your own machine.
-     NOTE: localStorage is per-browser only — it will NOT sync between
-     different visitors/devices. Swap storeGet/storeSet below for real
-     Firestore calls once Firestore is wired up.
+   優先順序：
+   1) window.storage：只有在 Claude 的 artifact 預覽環境裡才存在，
+      方便你在這裡先測試編輯/儲存流程。
+   2) Firestore：正式上線後使用，是「所有訪客共用」的真正雲端資料庫，
+      管理員存檔後，任何人打開網站都會看到最新內容。
+      （collection: "kv"，每個 key 對應一份 document，欄位 value 存字串）
+   3) localStorage：兩者都不存在時的最後保底，僅供你自己瀏覽器測試，
+      不會同步給其他人，正式上線不要依賴這一層。
    ------------------------------------------------------------------ */
 const usingCloudStorage = (typeof window.storage !== 'undefined');
 
@@ -955,9 +965,13 @@ async function storeGet(key){
     try{
       const res = await window.storage.get(key, true);
       return res ? res.value : null;
-    }catch(e){
-      return null; // key not saved yet
-    }
+    }catch(e){ return null; }
+  }
+  try{
+    const doc = await db.collection('kv').doc(encodeKvId(key)).get();
+    return doc.exists ? doc.data().value : null;
+  }catch(e){
+    console.warn('[Firestore] 讀取失敗，改用本機 localStorage', e);
   }
   try{ return localStorage.getItem(key); }catch(e){ return null; }
 }
@@ -968,8 +982,17 @@ async function storeSet(key, value){
       return !!r;
     }catch(e){ return false; }
   }
+  try{
+    await db.collection('kv').doc(encodeKvId(key)).set({ value, updatedAt: Date.now() });
+    return true;
+  }catch(e){
+    console.warn('[Firestore] 寫入失敗（可能是沒有登入管理員帳號，被安全規則擋下）', e);
+  }
   try{ localStorage.setItem(key, value); return true; }catch(e){ return false; }
 }
+/* Firestore 的 document ID 不能包含 "/"，這裡的 key 目前都不會用到，
+   但保留這層轉換以防萬一（例如年份、公告 id 之類的 key）。 */
+function encodeKvId(key){ return key.replace(/\//g, '__'); }
 
 let isAdmin = false;
 let isEditing = false;
@@ -993,7 +1016,7 @@ auth.onAuthStateChanged((user)=>{
   const logoutBtn = document.getElementById('logoutBtn');
 
   if(user){
-    isAdmin = (user.email === ADMIN_EMAIL);
+    isAdmin = ADMIN_EMAILS.includes(user.email);
     googleBtn.style.display = 'none';
     chip.style.display = 'flex';
     logoutBtn.style.display = '';
