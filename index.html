@@ -975,20 +975,29 @@ async function storeGet(key){
   }
   try{ return localStorage.getItem(key); }catch(e){ return null; }
 }
+/* 記錄「最後一次存檔」實際落在哪個後端，讓儲存後的提示文字說真話 */
+let lastSaveBackend = null; // 'preview' | 'firestore' | 'local'
+
 async function storeSet(key, value){
   if(usingCloudStorage){
     try{
       const r = await window.storage.set(key, value, true);
+      lastSaveBackend = 'preview';
       return !!r;
     }catch(e){ return false; }
   }
   try{
     await db.collection('kv').doc(encodeKvId(key)).set({ value, updatedAt: Date.now() });
+    lastSaveBackend = 'firestore';
     return true;
   }catch(e){
     console.warn('[Firestore] 寫入失敗（可能是沒有登入管理員帳號，被安全規則擋下）', e);
   }
-  try{ localStorage.setItem(key, value); return true; }catch(e){ return false; }
+  try{
+    localStorage.setItem(key, value);
+    lastSaveBackend = 'local';
+    return true;
+  }catch(e){ return false; }
 }
 /* Firestore 的 document ID 不能包含 "/"，這裡的 key 目前都不會用到，
    但保留這層轉換以防萬一（例如年份、公告 id 之類的 key）。 */
@@ -1078,7 +1087,7 @@ async function saveAllEdits(){
     for(const el of regions){
       await storeSet(CONTENT_KEY_PREFIX + el.id, el.innerHTML);
     }
-    showToast(usingCloudStorage ? '已儲存變更，所有訪客都會看到最新內容' : '已儲存到本機瀏覽器（僅供測試，正式上線需接後端）');
+    showToast('已儲存變更');
   }catch(e){
     showToast('儲存失敗，請稍後再試');
   }
