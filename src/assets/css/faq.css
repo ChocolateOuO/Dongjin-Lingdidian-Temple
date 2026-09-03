@@ -1,0 +1,38 @@
+/* 常見問題 */
+.faq-group-title{
+  margin:44px 0 4px;color:var(--gold);font-family:"Noto Sans TC",sans-serif;
+  font-size:.85rem;letter-spacing:.15em;
+}
+.faq-group-title::before{content:"▍";margin-right:2px;}
+
+.faq-list{display:flex;flex-direction:column;gap:12px;margin-top:14px;}
+.faq-item{
+  background:var(--paper-2);border:1px solid var(--paper-3);border-radius:8px;
+  overflow:hidden;transition:border-color .25s ease;
+}
+.faq-item.open{border-color:var(--gold);}
+.faq-q{
+  width:100%;text-align:left;background:none;border:none;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:16px 20px;font-family:"Noto Serif TC",serif;font-weight:600;
+  font-size:1rem;color:var(--ink-2);line-height:1.6;
+}
+.faq-q:hover{color:var(--red-2);}
+.faq-chev{
+  flex-shrink:0;color:var(--gold);font-family:"Noto Sans TC",sans-serif;
+  font-size:1.1rem;transition:transform .3s ease;
+}
+.faq-item.open .faq-chev{transform:rotate(45deg);}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height .4s ease;
+}
+.faq-item.open .faq-a{max-height:500px;}
+.faq-a p{
+  padding:0 20px 18px;font-family:"Noto Sans TC",sans-serif;font-weight:300;
+  color:var(--ink-soft);font-size:.96rem;line-height:1.9;
+}
+.faq-more{
+  margin-top:40px;font-family:"Noto Sans TC",sans-serif;font-size:.9rem;color:var(--ink-soft);
+}
+.faq-more a{color:var(--red-2);border-bottom:1px solid var(--gold-deep);}
+.faq-more a:hover{color:var(--cinnabar);}

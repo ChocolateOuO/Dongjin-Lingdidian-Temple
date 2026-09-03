@@ -1,10 +1,37 @@
 ---
-layout: layouts/stub.njk
+layout: layouts/base.njk
 permalink: /faq/
 title: 常見問題｜東津代天府靈帝殿
-description: 關於東津代天府靈帝殿參拜、分靈、迎王祭典的常見問題。
-glyph: 問
-eyebrow: 常見問題
-heading: 常見問題
-stubNote: 常見問題整理中。
+description: 關於東津代天府靈帝殿的廟史淵源、分靈關係、班頭制度、迎王祭典與參拜服務的常見問題。
+firebase: true
+extraCss:
+  - faq.css
+extraJs:
+  - faq.js
 ---
+
+<section class="page-head" data-glyph="問" style="padding-top:56px;">
+  <div class="container">
+    <div class="eyebrow">常見問題</div>
+    <h2 class="title">常見問題</h2>
+    <p class="lede">整理信眾常詢問的問題。廟史、分靈與神尊身世相關的答覆，一律以東港祖廟記載為準。若有其他疑問，歡迎電洽管理委員會 08-8335469（晚間 7 點後）。</p>
+
+    {%- for group in faq.groups %}
+    <h3 class="faq-group-title">{{ group.title }}</h3>
+    <div class="faq-list">
+      {%- for item in group.items %}
+      <div class="faq-item">
+        <button type="button" class="faq-q" aria-expanded="false">
+          <span>{{ item.q }}</span><span class="faq-chev" aria-hidden="true">＋</span>
+        </button>
+        <div class="faq-a"><p>{{ item.a }}</p></div>
+      </div>
+      {%- endfor %}
+    </div>
+    {%- endfor %}
+
+    <p class="faq-more">
+      更多內容：<a href="/about/">廟史與神尊</a>　·　<a href="/stories/">靈帝殿故事</a>　·　<a href="/events/">祭典行事曆</a>
+    </p>
+  </div>
+</section>

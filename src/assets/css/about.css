@@ -1,0 +1,70 @@
+/* 廟史與神尊 — 沿革年表、神尊圖鑑、分靈廟 */
+
+/* ---- 沿革年表 ---- */
+.timeline{
+  position:relative;margin:36px 0 0;padding-left:34px;
+}
+.timeline::before{
+  content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(var(--gold),var(--jade-light));
+}
+.timeline-item{position:relative;padding:0 0 26px 8px;}
+.timeline-item::before{
+  content:"";position:absolute;left:-30px;top:5px;width:12px;height:12px;border-radius:50%;
+  background:var(--paper);border:2px solid var(--gold-deep);
+}
+.timeline-item .t-era{
+  font-family:"Noto Serif TC",serif;font-weight:700;color:var(--red-2);font-size:1rem;
+}
+.timeline-item .t-text{
+  margin-top:6px;font-family:"Noto Sans TC",sans-serif;font-weight:300;
+  color:var(--ink-soft);font-size:.96rem;line-height:1.85;
+}
+
+/* ---- 神尊圖鑑 ---- */
+.deity-group-title{
+  margin:40px 0 0;color:var(--gold);font-family:"Noto Sans TC",sans-serif;
+  font-size:.85rem;letter-spacing:.15em;
+}
+.deity-group-title::before{content:"▍";margin-right:2px;}
+.deity-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.deity-tag{
+  font-family:"Noto Sans TC",sans-serif;font-size:.66rem;letter-spacing:.06em;
+  color:var(--gold-light);background:rgba(212,166,54,.14);border:1px solid rgba(212,166,54,.4);
+  border-radius:999px;padding:1px 9px;
+}
+
+/* 主祀（單張）不要撐滿整列 */
+.deity-grid:has(> .deity-card:only-child){grid-template-columns:minmax(260px,420px);}
+
+/* 無照片的神尊：改為精簡橫式卡片，避免整頁過長 */
+.deity-grid{align-items:start;}
+.deity-card:not(.has-photo){
+  display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:center;
+  padding:14px 16px;
+}
+.deity-card:not(.has-photo) .frame{
+  aspect-ratio:1;width:52px;height:52px;border-radius:50%;font-size:1.3rem;
+}
+.deity-card:not(.has-photo) .frame::after{background-image:none;}
+.deity-card:not(.has-photo) .info{padding:0;}
+.deity-card:not(.has-photo) h3{font-size:1rem;}
+.deity-card:not(.has-photo) p{margin-top:4px;font-size:.86rem;}
+
+/* ---- 分靈廟 / 交陪境 ---- */
+.temple-net{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:28px;}
+.temple-net .tn-card{
+  background:var(--paper-2);border:1px solid var(--paper-3);border-radius:8px;padding:18px 20px;
+  border-top:3px solid var(--gold);
+}
+.temple-net .tn-card h4{color:var(--red-2);font-size:1.02rem;margin-bottom:6px;}
+.temple-net .tn-card p{
+  font-family:"Noto Sans TC",sans-serif;font-weight:300;color:var(--ink-soft);
+  font-size:.9rem;line-height:1.8;
+}
+.temple-net .tn-card .tn-rel{
+  display:inline-block;margin-bottom:8px;font-family:"Noto Sans TC",sans-serif;
+  font-size:.68rem;letter-spacing:.08em;padding:2px 9px;border-radius:999px;
+  background:var(--red-2);color:var(--paper);
+}
+.temple-net .tn-card .tn-rel.chapei{background:var(--jade);}
