@@ -1,0 +1,46 @@
+/* 線上求籤 — 擴充：聖意/解曰/分項、籤號查詢
+   （基礎籤詩卡樣式仍在 main.css） */
+
+.slip-field{
+  display:flex;gap:10px;margin:8px 0;text-align:left;
+  font-family:"Noto Sans TC",sans-serif;font-size:.9rem;line-height:1.8;
+}
+.slip-field b{
+  flex-shrink:0;color:var(--red-2);font-family:"Noto Serif TC",serif;
+  writing-mode:vertical-rl;letter-spacing:.1em;padding:2px 0;
+}
+.slip-field span{color:var(--ink-soft);}
+
+.aspect-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:6px 18px;
+  margin:16px 0 4px;padding-top:14px;border-top:1px dashed var(--paper-3);
+}
+.aspect{
+  display:flex;gap:10px;font-family:"Noto Sans TC",sans-serif;font-size:.84rem;
+}
+.aspect .a-k{color:var(--gold-deep);min-width:2.6em;}
+.aspect .a-v{color:var(--ink-soft);}
+@media (max-width:520px){ .aspect-grid{grid-template-columns:1fr;} }
+
+/* 籤號查詢 */
+.lookup-card{
+  background:var(--paper-2);border:1px solid var(--paper-3);border-radius:10px;
+  padding:clamp(24px,4vw,36px);margin-top:40px;max-width:640px;margin-left:auto;margin-right:auto;
+}
+.lookup-title{color:var(--red-2);font-size:1.3rem;margin-top:8px;}
+.lookup-desc{
+  font-family:"Noto Sans TC",sans-serif;font-weight:300;color:var(--ink-soft);
+  font-size:.9rem;margin:10px 0 18px;
+}
+.lookup-form{display:flex;gap:10px;flex-wrap:wrap;}
+.lookup-form input{
+  flex:1;min-width:160px;font-family:"Noto Sans TC",sans-serif;padding:10px 12px;
+  border:1px solid var(--paper-3);border-radius:6px;background:var(--paper);color:var(--ink);font-size:.95rem;
+}
+.lookup-result{
+  display:none;margin-top:22px;padding-top:20px;border-top:1px solid var(--paper-3);text-align:left;
+}
+.lookup-result.show{display:block;animation:fade .4s ease;}
+.lookup-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+.lookup-no{font-family:"Ma Shan Zheng",cursive;font-size:1.5rem;color:var(--red-2);}
+.lookup-hint{font-family:"Noto Sans TC",sans-serif;color:var(--red-2);font-size:.9rem;}

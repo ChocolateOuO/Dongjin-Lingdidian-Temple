@@ -6,6 +6,8 @@ description: 東津代天府靈帝殿線上求籤，採六十甲子籤，誠心�
 firebase: true
 headScripts:
   - https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js
+extraCss:
+  - fortune.css
 extraJs:
   - lunar.js
   - fortune.js
@@ -99,10 +101,13 @@ extraJs:
             <div class="level-badge" id="resultLevel">上籤</div>
           </div>
           <div class="poem-lines" id="resultPoem"></div>
-          <div class="result-note" id="resultNote"></div>
+          <div class="slip-field"><b>聖意</b><span id="resultHoly"></span></div>
+          <div class="slip-field"><b>解曰</b><span id="resultExplain"></span></div>
+          <div class="slip-field"><b>白話參考</b><span class="result-note" id="resultNote"></span></div>
+          <div class="aspect-grid" id="resultAspects"></div>
           <p class="slip-date" id="slipDate"></p>
         </div>
-        <p class="fortune-disclaimer">籤詩僅供心靈參考與安定心神之用，若遇重大人生抉擇，仍建議親自到廟裡擲筊請示，或請教廟方人員詳細解籤。</p>
+        <p class="fortune-disclaimer">籤詩內容為通行版本整理，僅供心靈參考與安定心神之用（待廟方校訂）。若遇重大人生抉擇，仍建議親自到廟裡誠心擲筊請示，或請教廟方人員詳細解籤。</p>
         <div class="result-actions">
           <button class="btn" onclick="resetFortune()">再求一支籤</button>
           <button class="btn secondary" onclick="printFortuneSlip()">列印籤詩</button>
@@ -111,5 +116,20 @@ extraJs:
       </div>
 
     </div>
+
+    <div class="lookup-card">
+      <div class="eyebrow">籤號查詢</div>
+      <h3 class="lookup-title">直接查閱籤詩</h3>
+      <p class="lookup-desc">已知籤號，可直接輸入 1–60 查看該籤詩全文與解說（此為查閱，非擲筊請示）。</p>
+      <div class="lookup-form">
+        <input type="number" id="lookupInput" min="1" max="60" inputmode="numeric" placeholder="輸入籤號 1–60">
+        <button class="btn" type="button" onclick="lookupStick()">查詢</button>
+      </div>
+      <div class="lookup-result" id="lookupResult"></div>
+    </div>
   </div>
 </section>
+
+<script>
+  window.__FORTUNE_STICKS__ = {{ fortuneSticks | dump | safe }};
+</script>
