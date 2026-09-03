@@ -1,10 +1,115 @@
 ---
-layout: layouts/stub.njk
+layout: layouts/base.njk
 permalink: /fortune/
 title: 線上求籤｜東津代天府靈帝殿
-description: 東津代天府靈帝殿線上求籤，六十甲子籤，誠心默禱、擲筊、即時解籤。
-glyph: 籤
-eyebrow: 心靈指引
-heading: 線上求籤
-stubNote: 六十甲子籤線上求籤功能整備中，即將重新開放。
+description: 東津代天府靈帝殿線上求籤，採六十甲子籤，誠心默念姓名與所求之事，擲筊獲聖筊後即可觀看籤詩。
+firebase: true
+headScripts:
+  - https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js
+extraJs:
+  - lunar.js
+  - fortune.js
 ---
+
+<section class="page-head" data-glyph="籤" style="padding-top:56px;">
+  <div class="container">
+    <div class="eyebrow">心靈指引</div>
+    <h2 class="title">線上求籤</h2>
+    <p class="fortune-motto">心誠則靈</p>
+    <p class="lede">本站採用民間流傳已久的「六十甲子籤」，誠心默念姓名與所求之事，擲筊獲聖筊確認後即可觀看籤詩。</p>
+
+    <div class="fortune-card">
+      <div class="fortune-datebar" id="fortuneDateBar"></div>
+
+      <div class="fortune-step active" id="fortuneFormStep">
+        <p class="fortune-intro">請先靜下心來，默念您的姓名、出生年月日、住址，並在心中誠心說明想請示的事情，再點選「開始求籤」。<br>心誠則靈，切勿心存嬉戲或反覆求問同一事。</p>
+        <div class="fortune-field">
+          <label for="fortuneName">您的稱呼（必填，僅顯示於畫面，不會被儲存）</label>
+          <input type="text" id="fortuneName" placeholder="例如：王小姐" oninput="clearFieldError('fortuneName')">
+          <div class="field-error" id="fortuneNameError">請先輸入您的稱呼，讓神明知道是誰誠心來求籤。</div>
+        </div>
+
+        <div class="fortune-field">
+          <label>所求事項</label>
+          <div class="matter-grid" id="matterGrid">
+            <button type="button" class="matter-chip" data-value="事業" onclick="selectMatter(this)"><span class="matter-icon">💼</span><span>事業／工作</span></button>
+            <button type="button" class="matter-chip" data-value="感情" onclick="selectMatter(this)"><span class="matter-icon">💞</span><span>感情／婚姻</span></button>
+            <button type="button" class="matter-chip" data-value="健康" onclick="selectMatter(this)"><span class="matter-icon">🍃</span><span>健康</span></button>
+            <button type="button" class="matter-chip" data-value="財運" onclick="selectMatter(this)"><span class="matter-icon">💰</span><span>財運</span></button>
+            <button type="button" class="matter-chip" data-value="家運" onclick="selectMatter(this)"><span class="matter-icon">🏠</span><span>家運／平安</span></button>
+            <button type="button" class="matter-chip" data-value="學業" onclick="selectMatter(this)"><span class="matter-icon">📖</span><span>學業／考試</span></button>
+            <button type="button" class="matter-chip" data-value="其他" onclick="selectMatter(this)"><span class="matter-icon">✨</span><span>其他</span></button>
+          </div>
+          <div class="fortune-field" id="otherMatterWrap" style="display:none;margin-top:14px;">
+            <label for="otherMatterInput">請簡述所求事項</label>
+            <input type="text" id="otherMatterInput" placeholder="例如：搬家擇日、出行平安…" oninput="clearFieldError('otherMatterInput')">
+            <div class="field-error" id="otherMatterError">選擇「其他」時，請簡述您想請示的事情。</div>
+          </div>
+        </div>
+
+        <button class="btn" style="width:100%;margin-top:10px;" onclick="fortuneStart()">誠心開始求籤</button>
+      </div>
+
+      <div class="fortune-step" id="fortuneDrawStep">
+        <p class="fortune-hint" id="fortuneDrawHint">請誠心默念您所求之事，接著點選籤筒抽籤。</p>
+        <div class="stick-bucket" id="stickBucket" onclick="drawStick()">
+          <div class="bucket-glow"></div>
+          <div class="bucket-tip">點我求籤</div>
+          <div class="bucket-body-wrap">
+            <div class="stick-set">
+              <div class="stick" style="left:20px;height:78px;--rot:-14deg;--delay:0s;"></div>
+              <div class="stick" style="left:36px;height:84px;--rot:-6deg;--delay:.35s;"></div>
+              <div class="stick" style="left:52px;height:88px;--rot:1deg;--delay:.7s;"></div>
+              <div class="stick" style="left:68px;height:80px;--rot:8deg;--delay:.15s;"></div>
+              <div class="stick" style="left:80px;height:74px;--rot:14deg;--delay:.5s;"></div>
+              <div class="stick" style="left:58px;height:70px;--rot:-2deg;--delay:.9s;"></div>
+              <div class="flying-stick" id="flyingStick"></div>
+            </div>
+            <div class="bucket-rim"></div>
+            <div class="bucket-body"><div class="bucket-label">籤</div></div>
+          </div>
+        </div>
+        <button class="btn" id="drawStickBtn" onclick="drawStick()">點選籤筒抽籤</button>
+      </div>
+
+      <div class="fortune-step" id="fortuneConfirmStep">
+        <p class="fortune-hint">您抽到：</p>
+        <div class="drawn-number" id="drawnNumber">第 1 籤</div>
+        <p class="fortune-hint">請點選「擲筊」，向神明擲筊請示是否為此籤。連續擲出聖筊即可觀看籤詩；若為笑筊或陰筊，請重新誠心求籤。</p>
+        <div class="jiao-stage" id="jiaoStage">
+          <div class="jiao-ground"></div>
+          <div class="jiao-row" id="jiaoRow" onclick="throwJiao()">
+            <div class="jiao-tip">點我擲筊</div>
+            <div class="jiao-piece" id="jiao1"><div class="jiao-inner"><div class="jiao-face round-face"></div><div class="jiao-face flat-face"></div></div></div>
+            <div class="jiao-piece" id="jiao2"><div class="jiao-inner"><div class="jiao-face round-face"></div><div class="jiao-face flat-face"></div></div></div>
+          </div>
+        </div>
+        <div class="jiao-result" id="jiaoResultText"></div>
+        <button class="btn" id="throwJiaoBtn" onclick="throwJiao()">擲筊</button>
+        <button class="btn ghost" id="retryFortuneBtn" style="display:none;margin-left:10px;" onclick="retryFortune()">重新求籤</button>
+      </div>
+
+      <div class="fortune-step" id="fortuneResultStep">
+        <div class="fortune-slip" id="fortuneSlip">
+          <div class="slip-seal">靈<br>帝<br>殿<br>印</div>
+          <div class="slip-temple-name">東津代天府靈帝殿</div>
+          <p class="result-for" id="resultForWhom"></p>
+          <div class="result-head">
+            <div class="result-no" id="resultNo">第 1 籤　甲子</div>
+            <div class="level-badge" id="resultLevel">上籤</div>
+          </div>
+          <div class="poem-lines" id="resultPoem"></div>
+          <div class="result-note" id="resultNote"></div>
+          <p class="slip-date" id="slipDate"></p>
+        </div>
+        <p class="fortune-disclaimer">籤詩僅供心靈參考與安定心神之用，若遇重大人生抉擇，仍建議親自到廟裡擲筊請示，或請教廟方人員詳細解籤。</p>
+        <div class="result-actions">
+          <button class="btn" onclick="resetFortune()">再求一支籤</button>
+          <button class="btn secondary" onclick="printFortuneSlip()">列印籤詩</button>
+          <button class="btn secondary" onclick="saveFortuneImage()">儲存圖片</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

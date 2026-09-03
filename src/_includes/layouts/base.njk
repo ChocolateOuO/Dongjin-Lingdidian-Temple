@@ -83,7 +83,15 @@
 
 {% include "partials/footer.njk" %}
 
+{% if firebase %}
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js" defer></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js" defer></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js" defer></script>
+{% endif %}
+{% for src in headScripts or [] %}<script src="{{ src }}" defer></script>
+{% endfor %}
 <script src="/assets/js/site.js" defer></script>
+{% if firebase %}<script src="/assets/js/admin.js" defer></script>{% endif %}
 {% for js in extraJs or [] %}<script src="/assets/js/{{ js }}" defer></script>
 {% endfor %}
 </body>

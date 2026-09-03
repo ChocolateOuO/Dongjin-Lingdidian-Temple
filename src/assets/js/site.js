@@ -28,6 +28,16 @@
   const fy = document.getElementById("footerYear");
   if (fy) fy.textContent = new Date().getFullYear();
 
+  /* ---------------- 全站小提示（toast） ---------------- */
+  window.showToast = function (msg) {
+    const t = document.getElementById("saveToast");
+    if (!t) return;
+    t.textContent = msg || "已儲存變更";
+    t.classList.add("show");
+    clearTimeout(window.showToast._t);
+    window.showToast._t = setTimeout(() => t.classList.remove("show"), 2400);
+  };
+
   /* ---------------- 故事手風琴 ---------------- */
   window.toggleStory = function (el) {
     const wasOpen = el.classList.contains("open");
