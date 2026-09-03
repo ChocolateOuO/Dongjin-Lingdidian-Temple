@@ -1,0 +1,12 @@
+{
+  "name": "東津代天府靈帝殿",
+  "short_name": "靈帝殿",
+  "description": "屏東東港 東津代天府靈帝殿 官方網站",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#f1e7d4",
+  "theme_color": "#150d09",
+  "icons": [
+    { "src": "/assets/icons/favicon.svg", "type": "image/svg+xml", "sizes": "any" }
+  ]
+}

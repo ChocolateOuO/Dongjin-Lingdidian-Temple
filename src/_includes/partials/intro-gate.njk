@@ -1,0 +1,38 @@
+{# 開場廟門互動：輕叩廟門。純 CSS/SVG，無外部圖檔依賴。只在首頁顯示。 #}
+{% if page.url == "/" %}
+<div id="introGate" class="intro-gate" role="button" tabindex="0" aria-label="輕叩廟門，進入東津代天府靈帝殿官方網站">
+  <div class="intro-courtglow"></div>
+
+  <div class="intro-plaque-wrap">
+    <div class="intro-plaque"><span class="intro-plaque-text">東津代天府靈帝殿</span></div>
+  </div>
+
+  <div class="intro-shrine">
+    <div class="intro-pillar left" aria-hidden="true">
+      <div class="intro-pillar-sheen"></div>
+      <div class="intro-pillar-groove"><span class="intro-couplet">靈座玄宮護法代天清世界</span></div>
+    </div>
+
+    <div class="intro-doors" id="introDoors">
+      <div class="intro-door left" data-half="left">
+        <div class="door-frame-inner"></div>
+        <div class="intro-knocker"><span class="intro-knocker-glow"></span></div>
+      </div>
+      <div class="intro-door right" data-half="right">
+        <div class="door-frame-inner"></div>
+        <div class="intro-knocker"><span class="intro-knocker-glow"></span></div>
+      </div>
+    </div>
+
+    <div class="intro-pillar right" aria-hidden="true">
+      <div class="intro-pillar-sheen"></div>
+      <div class="intro-pillar-groove"><span class="intro-couplet">帝稱無極伏魔到府利人間</span></div>
+    </div>
+  </div>
+
+  <div class="intro-hint" id="introHint">
+    <div class="intro-hint-main"><span class="tap-icon">☝</span>輕叩廟門，恭迎入殿</div>
+    <div class="intro-hint-sub">點擊廟門即可入內參拜</div>
+  </div>
+</div>
+{% endif %}

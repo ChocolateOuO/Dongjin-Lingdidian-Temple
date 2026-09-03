@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dongjin-lingdidian-temple.onrender.com/sitemap.xml

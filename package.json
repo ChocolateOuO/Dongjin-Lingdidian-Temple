@@ -1,0 +1,17 @@
+{
+  "name": "dongjin-lingdidian-temple",
+  "version": "2.0.0",
+  "description": "東津代天府靈帝殿 官方網站",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "eleventy --serve",
+    "dev": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "puppeteer-core": "^25.9.0"
+  }
+}

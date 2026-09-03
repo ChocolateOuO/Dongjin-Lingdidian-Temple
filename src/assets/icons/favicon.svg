@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe9ab"/>
+      <stop offset=".45" stop-color="#d4a636"/>
+      <stop offset="1" stop-color="#9c7620"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="10" fill="#150d09"/>
+  <rect x="5.5" y="5.5" width="53" height="53" rx="7.5" fill="none" stroke="#8a2b1f" stroke-width="1.6"/>
+  <text x="32" y="45" font-family="'Ma Shan Zheng','Noto Serif TC',serif" font-size="42"
+        text-anchor="middle" fill="url(#g)">靈</text>
+</svg>
