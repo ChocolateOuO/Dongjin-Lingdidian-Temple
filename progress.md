@@ -11,12 +11,12 @@
 ## 專案現況
 
 - **架構**：Eleventy 3 多頁靜態站。原 `index.html` 已拆解，來源在 `src/`，輸出 `_site/`。
-- **分支**：`rebuild/site`（off `main`）。`main` 仍是舊版單檔站。
+- **分支**：新版已於 2026-09-03 fast-forward 合併回 `main` 並 push（`rebuild/site` 完成使命）。
 - **部署**：正式站 Render `https://dongjin-lingdidian-temple.onrender.com`（canonical）。
   - `render.yaml` 已寫好（build: `npm ci && npx @11ty/eleventy`，publish: `_site`）。
-  - `.github/workflows/pages.yml`（push main 觸發 GitHub Pages）。
-  - **⚠️ 尚未做**：把 Render 服務的 branch 指到 `rebuild/site`，或把此分支合併回 `main`。
-    在那之前 Render 上看到的還是舊站。
+  - `.github/workflows/pages.yml`（push main 觸發 GitHub Pages；repo Settings → Pages 的 Source 需設為 GitHub Actions）。
+  - **⚠️ 使用者待辦**：確認 Render 服務追蹤的 branch 是 `main`（Dashboard → Settings）。
+    若原本追別的 branch，切到 `main` 後才會吃到新站。
 - 指令：`npm run dev`（本機預覽 8080）／`npm run build`。
 
 ## 目錄重點
@@ -100,8 +100,8 @@ _reference/       不進版控：舊站備份、來源大圖、QA 腳本、截�
 
 ### 收尾
 - ~~README 更新（補新功能與「廟方維護」說明）~~ ✅ 收尾-1
+- ~~合併 `rebuild/site` → `main`~~ ✅ 2026-09-03 fast-forward merge + push
 - 無障礙細查：燈箱焦點鎖定已補（收尾-2）；nav/開場廟門 aria 皆有。再查對比、整體 tab 順序。
 - Lighthouse。
 - 清 `_reference` 內暫用腳本命名、確認 `.gitignore` 完整。
-- 全部確認後：合併 `rebuild/site` → `main`（或請使用者把 Render branch 切過去先驗收）。
-- 舊 `main` 的單檔 `index.html` 內容已在 `_reference/index.legacy.html` 備份，git 歷史也有。
+- 舊 `main` 的單檔 `index.html` 內容在 git 歷史（commit 7114f91 以前）。
