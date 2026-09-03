@@ -1,0 +1,61 @@
+/* 祭典行事曆 */
+.event-legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+
+.event-type{
+  display:inline-block;font-family:"Noto Sans TC",sans-serif;font-size:.72rem;
+  letter-spacing:.1em;padding:3px 12px;border-radius:999px;
+  border:1px solid currentColor;
+}
+.type-迎王{color:var(--red-2);}
+.type-神誕{color:var(--gold-deep);}
+.type-法會{color:var(--jade);}
+.type-遶境{color:var(--cinnabar);}
+.type-其他{color:var(--ink-soft);}
+
+.event-list{margin-top:30px;display:flex;flex-direction:column;gap:16px;}
+.event-card{
+  display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:start;
+  background:var(--paper-2);border:1px solid var(--paper-3);border-radius:8px;
+  padding:18px 22px;border-left:4px solid var(--paper-3);
+  transition:box-shadow .3s ease, border-color .3s ease;
+}
+.event-card:hover{box-shadow:0 12px 26px rgba(0,0,0,.1);}
+.event-card.type-迎王{border-left-color:var(--red-2);}
+.event-card.type-神誕{border-left-color:var(--gold);}
+.event-card.type-法會{border-left-color:var(--jade-light);}
+.event-card.type-遶境{border-left-color:var(--cinnabar);}
+
+.event-date{
+  font-family:"Noto Serif TC",serif;font-weight:600;color:var(--red-2);
+  font-size:1.02rem;line-height:1.5;padding-top:2px;
+}
+.event-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.event-head h3{color:var(--ink-2);font-size:1.08rem;}
+.event-recur{
+  font-family:"Noto Sans TC",sans-serif;font-size:.68rem;letter-spacing:.08em;
+  color:var(--jade);border:1px solid var(--jade-light);border-radius:999px;padding:1px 8px;
+}
+.event-body p{
+  margin-top:8px;font-family:"Noto Sans TC",sans-serif;font-weight:300;
+  color:var(--ink-soft);font-size:.95rem;line-height:1.8;
+}
+.event-admin{margin-top:10px;}
+@media (max-width:560px){
+  .event-card{grid-template-columns:1fr;gap:8px;}
+}
+
+/* 管理員新增表單 */
+.event-form{
+  margin-top:36px;padding:22px 24px;border:1px dashed var(--gold);border-radius:10px;
+  background:var(--paper-2);font-family:"Noto Sans TC",sans-serif;
+}
+.event-form h3{color:var(--red-2);font-size:1rem;margin-bottom:14px;}
+.event-form label{display:block;font-size:.82rem;color:var(--red-2);margin-bottom:12px;}
+.event-form input[type=text],.event-form select,.event-form textarea{
+  width:100%;margin-top:5px;padding:9px 11px;border:1px solid var(--paper-3);
+  border-radius:6px;font-family:inherit;font-size:.92rem;background:var(--paper);color:var(--ink);
+}
+.ef-row{display:flex;gap:16px;flex-wrap:wrap;}
+.ef-row > label{flex:1;min-width:200px;}
+.ef-check{display:flex !important;align-items:center;gap:8px;align-self:center;margin-top:18px;}
+.ef-check input{width:auto;margin:0;}

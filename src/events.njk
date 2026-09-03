@@ -1,10 +1,48 @@
 ---
-layout: layouts/stub.njk
+layout: layouts/base.njk
 permalink: /events/
 title: 祭典行事曆｜東津代天府靈帝殿
-description: 東津代天府靈帝殿迎王祭典、法會、神誕與遶境活動時程。
-glyph: 曆
-eyebrow: 祭典資訊
-heading: 祭典行事曆
-stubNote: 迎王、法會、神誕、遶境等年度時程，正在整理中，將提供國曆與農曆對照。
+description: 東津代天府靈帝殿迎王祭典、神尊聖誕、法會與遶境活動年度時程。東港迎王三年一科，本殿為班頭制度發源地。
+firebase: true
+extraCss:
+  - events.css
+extraJs:
+  - events.js
 ---
+
+<section class="page-head" data-glyph="曆" style="padding-top:56px;">
+  <div class="container">
+    <div class="eyebrow">祭典資訊</div>
+    <h2 class="title">祭典行事曆</h2>
+    <p class="lede">本殿主祀何府大千歲，於清光緒 30 年甲辰科奉玉旨擔任東港迎王首科大千歲，並為迎王班頭制度發源地。以下為年度祭典與活動時程，實際日期以廟方公告及東港東隆宮公告為準。</p>
+
+    <div class="event-legend">
+      <span class="event-type type-迎王">迎王</span>
+      <span class="event-type type-神誕">神誕</span>
+      <span class="event-type type-法會">法會</span>
+      <span class="event-type type-遶境">遶境</span>
+      <span class="event-type type-其他">其他</span>
+    </div>
+
+    <div class="event-list" id="eventList"></div>
+    <div class="empty-state" id="eventEmpty" style="display:none;">尚無行事曆項目。</div>
+
+    <form class="event-form admin-only block" id="eventForm">
+      <h3>新增行事曆項目（管理員）</h3>
+      <div class="ef-row">
+        <label>名稱<input type="text" name="title" placeholder="例如：何府大千歲聖誕千秋" required></label>
+        <label>類型<select name="type"></select></label>
+      </div>
+      <div class="ef-row">
+        <label>日期<input type="text" name="date" placeholder="農四月初九　或　2027-10-15" required></label>
+        <label class="ef-check"><input type="checkbox" name="recurring"> 每年固定</label>
+      </div>
+      <label>說明<textarea name="desc" rows="2" placeholder="選填"></textarea></label>
+      <button class="btn" type="submit">新增</button>
+    </form>
+  </div>
+</section>
+
+<script>
+  window.__EVENTS_SEED__ = {{ events | dump | safe }};
+</script>

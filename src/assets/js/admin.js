@@ -132,7 +132,7 @@
       if (logoutBtn) logoutBtn.hidden = true;
       document.body.classList.remove("admin-mode");
     }
-    if (typeof window.loadPhotos === "function") window.loadPhotos();
+    if (typeof window.onAdminStateChange === "function") window.onAdminStateChange();
   });
 
   window.toggleEditMode = function () {

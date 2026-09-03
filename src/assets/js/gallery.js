@@ -297,5 +297,5 @@
   waitStore();
 
   // 登入狀態改變時（admin.js 會呼叫 window.loadPhotos）重新渲染以顯示刪除鈕
-  window.loadPhotos = render;
+  window.onAdminStateChange = render;
 })();
