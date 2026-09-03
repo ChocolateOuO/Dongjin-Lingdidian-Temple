@@ -84,7 +84,9 @@
   window.openLightbox = function (src, cap) {
     if (!lightbox) return;
     lastFocused = document.activeElement;
-    document.getElementById("lightboxImg").src = src;
+    const img = document.getElementById("lightboxImg");
+    img.src = src;
+    img.alt = cap || "";
     document.getElementById("lightboxCap").textContent = cap || "";
     lightbox.style.display = "flex";
     requestAnimationFrame(() => requestAnimationFrame(() => lightbox.classList.add("open")));
@@ -104,7 +106,14 @@
       if (e.target.id === "lightbox") window.closeLightbox();
     });
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && lightbox.classList.contains("open")) window.closeLightbox();
+      if (!lightbox.classList.contains("open")) return;
+      if (e.key === "Escape") window.closeLightbox();
+      // 焦點鎖在燈箱內（唯一可聚焦元素為關閉鈕）
+      if (e.key === "Tab") {
+        e.preventDefault();
+        const closeBtn = lightbox.querySelector(".close");
+        if (closeBtn) closeBtn.focus();
+      }
     });
   }
 

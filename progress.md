@@ -4,7 +4,7 @@
 > 相關背景在 `~/.claude/projects/.../memory/`（temple-site-rebuild / temple-lineage-facts /
 > temple-site-original-cms / working-preferences）。
 
-最後更新：2026-09-03
+最後更新：2026-09-03（M4/M5-6 已 commit；README 維護章節補完）
 
 ---
 
@@ -65,9 +65,12 @@ _reference/       不進版控：舊站備份、來源大圖、QA 腳本、截�
   `blessings` collection，訪客送出 pending → 管理員審核）+ `firestore.rules`。
 - **M5-5** — 參拜頁「如何前往」（開車/客運/火車）+ 街景連結 + 社群連結區；
   廟誌文史專欄（journal 集合 + 首篇「開欄的話」）；頁尾加廟誌連結 + footer-social。
-- **M4/M5-6**（**尚未 commit，工作區有變更**）— OG 分享圖 + favicon 光柵版 + base.njk
+- **M4/M5-6**（commit `ce5bdff`）— OG 分享圖 + favicon 光柵版 + base.njk
   補 og:image/twitter:image/JSON-LD image/icon；FAQ 頁 FAQPage JSON-LD；sitemap 納 /journal/；
   **日間／夜間模式**（頁尾切換鈕、data-theme=night token 覆蓋、首屏無閃爍、localStorage）。
+- **收尾-1** — README 補完「廟方內容維護」章節（網頁編輯／資料檔對照表／廟誌新增文章／
+  Cloudinary・firestore.rules・social 啟用說明）。
+- **收尾-2** — 燈箱 a11y：Tab 焦點鎖在燈箱內、開啟時同步 `img.alt` 為圖說。
 
 全 9 主要頁 + 廟誌：目前 0 JS 錯誤、0 失敗請求。
 
@@ -76,8 +79,7 @@ _reference/       不進版控：舊站備份、來源大圖、QA 腳本、截�
 ## 待辦（下次從這裡繼續）
 
 ### 立即
-1. **commit 目前工作區的 M4/M5-6 變更**（OG 圖 / 夜間模式 / FAQ JSON-LD / sitemap）。
-2. `node _reference/qa.mjs shots` 後逐頁看截圖，修視覺瑕疵。
+1. `node _reference/qa.mjs shots` 後逐頁看截圖，修視覺瑕疵。
 
 ### 需要廟方／使用者提供才能完成
 - **Cloudinary**：免費帳號的 `cloudName` + unsigned `uploadPreset` → 填 `src/_data/site.js`
@@ -97,9 +99,8 @@ _reference/       不進版控：舊站備份、來源大圖、QA 腳本、截�
   每日一籤、FB/LINE 連結位、廟誌、日夜模式）。
 
 ### 收尾
-- README 更新（補新功能與「廟方維護」說明——Cloudinary、firestore.rules、social、
-  神尊/行事曆資料檔位置）。
-- 無障礙細查：燈箱焦點鎖定已做基本版；再查 tab 順序、對比、`aria`。
+- ~~README 更新（補新功能與「廟方維護」說明）~~ ✅ 收尾-1
+- 無障礙細查：燈箱焦點鎖定已補（收尾-2）；nav/開場廟門 aria 皆有。再查對比、整體 tab 順序。
 - Lighthouse。
 - 清 `_reference` 內暫用腳本命名、確認 `.gitignore` 完整。
 - 全部確認後：合併 `rebuild/site` → `main`（或請使用者把 Render branch 切過去先驗收）。
