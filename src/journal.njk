@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+permalink: /journal/
+title: 廟誌文史｜東津代天府靈帝殿
+description: 東津代天府靈帝殿廟誌文史專欄，記錄廟史考證、迎王軼事、神尊淵源與地方信仰。
+eleventyExcludeFromCollections: true
+extraCss:
+  - journal.css
+---
+
+<section class="page-head" data-glyph="誌" style="padding-top:56px;">
+  <div class="container">
+    <div class="eyebrow">文史專欄</div>
+    <h2 class="title">廟誌文史</h2>
+    <p class="lede">記錄本殿沿革考證、迎王祭典軼事、神尊淵源與地方信仰變遷。內容以廟方記載與耆老口述為依據；如與坊間流傳有出入，一律以本殿祖廟記載為準。</p>
+
+    <div class="journal-list">
+      {%- for post in collections.journal %}
+      <a class="journal-item" href="{{ post.url }}">
+        <span class="ji-date">{{ post.date | isoDate }}</span>
+        <span class="ji-title">{{ post.data.title }}</span>
+        {%- if post.data.excerpt %}<span class="ji-excerpt">{{ post.data.excerpt }}</span>{%- endif %}
+      </a>
+      {%- else %}
+      <p class="lede">專欄整備中，敬請期待。</p>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

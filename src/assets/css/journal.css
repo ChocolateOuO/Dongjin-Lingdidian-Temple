@@ -1,0 +1,37 @@
+/* 廟誌文史 */
+.journal-list{display:flex;flex-direction:column;gap:14px;margin-top:32px;}
+.journal-item{
+  display:block;background:var(--paper-2);border:1px solid var(--paper-3);
+  border-left:4px solid var(--gold);border-radius:8px;padding:18px 22px;
+  transition:box-shadow .3s ease, border-color .3s ease, transform .3s var(--spring);
+}
+.journal-item:hover{box-shadow:0 12px 26px rgba(0,0,0,.1);border-color:var(--gold);transform:translateY(-2px);}
+.journal-item .ji-date{
+  display:block;font-family:"Noto Sans TC",sans-serif;font-size:.76rem;
+  color:var(--gold-deep);letter-spacing:.06em;
+}
+.journal-item .ji-title{
+  display:block;margin-top:4px;font-family:"Noto Serif TC",serif;font-weight:700;
+  color:var(--red-2);font-size:1.15rem;
+}
+.journal-item .ji-excerpt{
+  display:block;margin-top:6px;font-family:"Noto Sans TC",sans-serif;font-weight:300;
+  color:var(--ink-soft);font-size:.92rem;line-height:1.8;
+}
+
+/* 單篇 */
+.post{max-width:760px;}
+.post-back{margin-bottom:18px;}
+.post-back a{color:var(--red-2);font-family:"Noto Sans TC",sans-serif;font-size:.86rem;}
+.post-title{color:var(--red-2);font-size:clamp(1.6rem,3.4vw,2.2rem);margin-top:8px;line-height:1.4;}
+.post-date{
+  font-family:"Noto Sans TC",sans-serif;font-size:.8rem;color:var(--ink-soft);
+  margin-top:10px;padding-bottom:16px;border-bottom:1px solid var(--paper-3);
+}
+.post-body{margin-top:24px;}
+.post-body p{
+  margin:0 0 18px;font-family:"Noto Sans TC",sans-serif;font-weight:300;
+  color:var(--ink-2);font-size:1rem;line-height:2;
+}
+.post-body h2,.post-body h3{color:var(--red-2);margin:32px 0 12px;}
+.post-body a{color:var(--red-2);border-bottom:1px solid var(--gold-deep);}

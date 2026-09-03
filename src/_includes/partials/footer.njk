@@ -29,7 +29,15 @@
 
   <nav class="footer-nav" aria-label="頁尾導覽">
     {% for item in site.nav %}<a href="{{ item.href }}">{{ item.label }}</a>{% endfor %}
+    <a href="/journal/">廟誌文史</a>
   </nav>
+
+  {% if site.social.facebook or site.social.line %}
+  <div class="footer-social">
+    {% if site.social.facebook %}<a href="{{ site.social.facebook }}" target="_blank" rel="noopener">Facebook</a>{% endif %}
+    {% if site.social.line %}<a href="{{ site.social.line }}" target="_blank" rel="noopener">LINE</a>{% endif %}
+  </div>
+  {% endif %}
 
   <div class="footer-contact">
     {{ site.contact.address }}　｜　{{ site.contact.phone }}（{{ site.contact.phoneNote }}）

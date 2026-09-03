@@ -1292,3 +1292,10 @@
 
   /* ---------- HIDDEN ATTR SAFETY ---------- */
   [hidden]{display:none !important;}
+
+  .footer-social{display:flex;justify-content:center;gap:16px;margin-bottom:16px;}
+  .footer-social a{
+    color:var(--gold-light);font-family:"Noto Sans TC",sans-serif;font-size:.82rem;
+    border:1px solid var(--gold-deep);border-radius:999px;padding:4px 16px;transition:background .2s,color .2s;
+  }
+  .footer-social a:hover{background:var(--gold);color:var(--ink);}

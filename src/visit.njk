@@ -1,9 +1,11 @@
 ---
 layout: layouts/base.njk
 title: 參拜資訊｜東津代天府靈帝殿
-description: 東津代天府靈帝殿地址、開放時間、交通停車與聯絡方式。屏東縣東港鎮盛漁里興漁街1號。
+description: 東津代天府靈帝殿地址、開放時間、交通指引、停車與聯絡方式。屏東縣東港鎮盛漁里興漁街1號。
 permalink: /visit/
 firebase: true
+extraCss:
+  - visit.css
 ---
 
 <section class="page-head" data-glyph="拜" style="padding-top:56px;">
@@ -29,5 +31,43 @@ firebase: true
         <a class="map-fallback-link" href="https://www.google.com/maps/search/?api=1&query=928+%E5%B1%8F%E6%9D%B1%E7%B8%A3%E6%9D%B1%E6%B8%AF%E9%8E%AE%E7%9B%9B%E6%BC%81%E9%87%8C%E8%88%88%E6%BC%81%E8%A1%971%E8%99%9F" target="_blank" rel="noopener">在 Google 地圖中開啟 →</a>
       </div>
     </div>
+    <p style="margin-top:14px;">
+      <a class="btn secondary" href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint={{ site.contact.geo.lat }},{{ site.contact.geo.lng }}" target="_blank" rel="noopener">開啟街景導覽</a>
+    </p>
   </div>
 </section>
+
+<section>
+  <div class="container">
+    <div class="eyebrow">交通指引</div>
+    <h2 class="title">如何前往</h2>
+    <div class="visit-ways">
+      <div class="vw-card">
+        <h3>🚗 開車</h3>
+        <p>國道 3 號南州交流道下 → 台 17 線往東港方向 → 進東港市區後循「盛漁里／下頭角」指標，至興漁街 1 號。廟埕周邊有路邊停車格，車位有限，遶境或祭典期間請改搭大眾運輸。</p>
+      </div>
+      <div class="vw-card">
+        <h3>🚌 客運</h3>
+        <p>搭乘國光客運、屏東客運或高雄客運「往東港」路線，於東港站下車後轉步行或計程車前往下頭角一帶（約 10 分鐘）。</p>
+      </div>
+      <div class="vw-card">
+        <h3>🚆 火車轉乘</h3>
+        <p>台鐵至潮州站或屏東站，轉乘往東港的客運班車；或搭高鐵左營站，轉乘經東港往墾丁方向的客運於東港下車。</p>
+      </div>
+    </div>
+    <p class="lede" style="margin-top:20px;font-size:.9rem;">實際班次與路線請以各客運業者最新公告為準。</p>
+  </div>
+</section>
+
+{% if site.social.facebook or site.social.line %}
+<section>
+  <div class="container">
+    <div class="eyebrow">社群連結</div>
+    <h2 class="title">追蹤本殿</h2>
+    <div class="social-links">
+      {% if site.social.facebook %}<a class="btn" href="{{ site.social.facebook }}" target="_blank" rel="noopener">Facebook 粉絲專頁</a>{% endif %}
+      {% if site.social.line %}<a class="btn secondary" href="{{ site.social.line }}" target="_blank" rel="noopener">加入 LINE 官方帳號</a>{% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}

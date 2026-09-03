@@ -1,0 +1,16 @@
+---
+layout: layouts/base.njk
+---
+{% set metaTitle = title + "｜廟誌｜" + site.name %}
+{% set description = excerpt if excerpt else description %}
+<section class="page-head" data-glyph="誌" style="padding-top:56px;">
+  <div class="container post">
+    <p class="post-back"><a href="/journal/">← 回廟誌文史</a></p>
+    <div class="eyebrow">廟誌文史</div>
+    <h1 class="post-title">{{ title }}</h1>
+    <p class="post-date">{{ date | isoDate }}</p>
+    <div class="post-body">
+      {{ content | safe }}
+    </div>
+  </div>
+</section>
