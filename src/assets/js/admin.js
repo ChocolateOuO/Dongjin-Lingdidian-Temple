@@ -35,9 +35,12 @@
 
   const CONTENT_KEY_PREFIX = "content-override:";
 
+  window.ADMIN_EMAILS = ADMIN_EMAILS;
+
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
   const db = firebase.firestore();
+  window.fbDb = db; // 供 blessings.js 等模組使用
 
   /* ---------------- 儲存層 ----------------
      1) window.storage：僅 Claude artifact 預覽環境

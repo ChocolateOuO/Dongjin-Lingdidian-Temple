@@ -44,3 +44,44 @@
 .lookup-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
 .lookup-no{font-family:"Ma Shan Zheng",cursive;font-size:1.5rem;color:var(--red-2);}
 .lookup-hint{font-family:"Noto Sans TC",sans-serif;color:var(--red-2);font-size:.9rem;}
+
+/* 祈福留言牆 */
+.blessing-section{
+  max-width:680px;margin:40px auto 0;padding:clamp(24px,4vw,36px);
+  background:var(--paper-2);border:1px solid var(--paper-3);border-radius:10px;
+}
+.blessing-form{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
+.blessing-form input,.blessing-form textarea{
+  font-family:"Noto Sans TC",sans-serif;padding:10px 12px;border:1px solid var(--paper-3);
+  border-radius:6px;background:var(--paper);color:var(--ink);font-size:.95rem;resize:vertical;
+}
+.blessing-form .btn{align-self:flex-start;}
+.blessing-status{
+  font-family:"Noto Sans TC",sans-serif;font-size:.84rem;color:var(--jade);margin-top:10px;min-height:18px;
+}
+.blessing-wall{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:22px;
+}
+.blessing-empty{
+  font-family:"Noto Sans TC",sans-serif;color:var(--ink-soft);font-size:.9rem;grid-column:1/-1;
+}
+.blessing-card{
+  background:linear-gradient(170deg,#fff8ea,var(--paper));border:1px solid var(--gold-deep);
+  border-radius:8px;padding:16px 18px;position:relative;
+}
+.blessing-card .b-text{
+  font-family:"Noto Serif TC",serif;color:var(--ink-2);font-size:.96rem;line-height:1.85;
+  white-space:pre-wrap;word-break:break-word;
+}
+.blessing-card .b-foot{
+  display:flex;justify-content:space-between;align-items:baseline;margin-top:10px;
+  font-family:"Noto Sans TC",sans-serif;font-size:.76rem;color:var(--ink-soft);
+}
+.blessing-card .b-name{color:var(--red-2);}
+.blessing-pending{
+  margin-top:20px;padding:16px;border:1px dashed var(--gold);border-radius:8px;background:var(--paper);
+}
+.blessing-pending h4{color:var(--red-2);font-size:.95rem;margin-bottom:10px;font-family:"Noto Sans TC",sans-serif;}
+.blessing-pending .blessing-card{margin-bottom:10px;}
+.b-admin{display:flex;gap:8px;margin-top:10px;}
+.b-admin .btn{padding:5px 12px;font-size:.75rem;}

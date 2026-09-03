@@ -1,0 +1,44 @@
+rules_version = '2';
+// 東津代天府靈帝殿 — Firestore 安全規則
+// 部署：Firebase 主控台 > Firestore Database > 規則，貼上後發布；
+// 或 firebase deploy --only firestore:rules
+//
+// 管理員名單需與 src/assets/js/admin.js 的 ADMIN_EMAILS 一致。
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email in [
+          "llomoll5566@gmail.com"
+          // , "temple-admin-2@gmail.com"
+        ];
+    }
+
+    // 網頁可編輯區塊、公告、行事曆、照片庫網址清單等：所有人可讀，僅管理員可寫
+    match /kv/{key} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // 祈福留言牆
+    match /blessings/{id} {
+      // 已核准的留言任何人可讀；未核准的僅管理員可讀
+      allow read: if resource.data.status == "approved" || isAdmin();
+      // 訪客可新增，但強制 status=pending 並限制欄位與長度
+      allow create: if request.resource.data.status == "pending"
+        && request.resource.data.keys().hasOnly(["name", "text", "status", "createdAt"])
+        && request.resource.data.name is string && request.resource.data.name.size() <= 20
+        && request.resource.data.text is string
+        && request.resource.data.text.size() >= 1 && request.resource.data.text.size() <= 200;
+      // 審核（改 status）、刪除：僅管理員
+      allow update, delete: if isAdmin();
+    }
+
+    // 其他一律拒絕
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

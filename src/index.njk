@@ -3,6 +3,10 @@ layout: layouts/base.njk
 title: 東津代天府靈帝殿｜官方網站
 description: 屏東縣東港鎮盛漁里 東津代天府靈帝殿，主祀代天巡狩何府大千歲，開基二百餘年，東港迎王班頭制度發源地。
 firebase: true
+extraCss:
+  - home.css
+extraJs:
+  - home.js
 ---
 
 <header class="hero">
@@ -88,6 +92,20 @@ firebase: true
 </section>
 
 <section>
+  <div class="container">
+    <div class="eyebrow">心靈一語</div>
+    <h2 class="title">今日籤運</h2>
+    <p class="lede">每日隨代天巡狩何府大千歲賜下一句籤詩，作為當日心境的參考。正式請示仍請親臨本殿誠心擲筊。</p>
+    <div class="daily-fortune" id="dailyFortune">
+      <div class="df-head"><span class="df-no" id="dfNo">—</span><span class="level-badge" id="dfLevel"></span></div>
+      <div class="poem-lines" id="dfPoem"></div>
+      <p class="df-holy" id="dfHoly"></p>
+      <a class="pill-btn" href="/fortune/" style="border-color:var(--gold);color:var(--red-2);">前往線上求籤 →</a>
+    </div>
+  </div>
+</section>
+
+<section>
   <div class="container" id="edit-c3" data-editable-region="1" data-content-version="1">
     <div class="eyebrow">最新消息</div>
     <h2 class="title">公告事項</h2>
@@ -108,3 +126,7 @@ firebase: true
     </div>
   </div>
 </section>
+
+<script>
+  window.__FORTUNE_STICKS__ = {{ fortuneSticks | dump | safe }};
+</script>

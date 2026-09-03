@@ -1,0 +1,15 @@
+/* 首頁 — 今日籤運 */
+.daily-fortune{
+  margin-top:32px;max-width:560px;
+  background:linear-gradient(170deg,#fbf3e2,var(--paper-2));
+  border:1px solid var(--gold);border-radius:10px;
+  padding:clamp(24px,4vw,36px);
+  box-shadow:0 0 0 4px var(--paper),0 10px 24px rgba(0,0,0,.1);
+}
+.daily-fortune .df-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.daily-fortune .df-no{font-family:"Ma Shan Zheng",cursive;font-size:1.5rem;color:var(--red-2);}
+.daily-fortune .poem-lines{margin:20px 0;gap:12px;}
+.daily-fortune .df-holy{
+  font-family:"Noto Sans TC",sans-serif;color:var(--ink-soft);font-size:.94rem;
+  line-height:1.9;padding:12px 0 18px;border-top:1px dashed var(--paper-3);
+}

@@ -11,6 +11,7 @@ extraCss:
 extraJs:
   - lunar.js
   - fortune.js
+  - blessings.js
 ---
 
 <section class="page-head" data-glyph="籤" style="padding-top:56px;">
@@ -126,6 +127,20 @@ extraJs:
         <button class="btn" type="button" onclick="lookupStick()">查詢</button>
       </div>
       <div class="lookup-result" id="lookupResult"></div>
+    </div>
+
+    <div class="blessing-section">
+      <div class="eyebrow">祈福留言牆</div>
+      <h3 class="lookup-title">點一盞心燈</h3>
+      <p class="lookup-desc">寫下對家人、對自己的祈願。留言經廟方確認後會顯示於下方留言牆。請勿張貼廣告、他人個資或不當內容。</p>
+      <form class="blessing-form" id="blessingForm">
+        <input type="text" name="name" placeholder="稱呼（選填，例如：王小姐）" maxlength="20">
+        <textarea name="text" rows="3" maxlength="200" placeholder="祈願內容（必填，200 字內）" required></textarea>
+        <button class="btn" type="submit">誠心送出</button>
+      </form>
+      <p class="blessing-status" id="blessingStatus" role="status" aria-live="polite"></p>
+      <div class="blessing-pending admin-only block" id="blessingPending"></div>
+      <div class="blessing-wall" id="blessingWall"></div>
     </div>
   </div>
 </section>
