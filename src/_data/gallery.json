@@ -1,0 +1,15 @@
+{
+  "note": "內建（seed）照片。廟方之後透過網頁上傳的照片存於 Firestore，會與此清單合併顯示。此處照片為常設、不可從前台刪除。檔案位於 /assets/img/gallery/<src>.webp 與 <src>-thumb.webp。",
+  "categories": ["遶境", "祭典", "法會", "廟貌", "神將", "其他"],
+  "photos": [
+    { "id": "seed-raojing-2015-01", "year": "2015", "category": "遶境", "src": "raojing-2015-01", "caption": "2015.09.28 遶境紀實" },
+    { "id": "seed-raojing-2018-01", "year": "2018", "category": "遶境", "src": "raojing-2018-01", "caption": "2018.10.28 遶境" },
+    { "id": "seed-raojing-2018-02", "year": "2018", "category": "遶境", "src": "raojing-2018-02", "caption": "2018.10.28 遶境" },
+    { "id": "seed-raojing-2018-03", "year": "2018", "category": "遶境", "src": "raojing-2018-03", "caption": "2018.11.01 遶境" },
+    { "id": "seed-raojing-2019-01", "year": "2019", "category": "遶境", "src": "raojing-2019-01", "caption": "2019.03.23 遶境" },
+    { "id": "seed-raojing-2020-01", "year": "2020", "category": "遶境", "src": "raojing-2020-01", "caption": "2020.02.09 遶境" },
+    { "id": "seed-main-hall", "year": "2020", "category": "廟貌", "src": "main-hall", "caption": "東津代天府靈帝殿 主殿" },
+    { "id": "seed-general-jian", "year": "2020", "category": "神將", "src": "general-jian", "caption": "劍將軍" },
+    { "id": "seed-general-yin", "year": "2020", "category": "神將", "src": "general-yin", "caption": "印將軍" }
+  ]
+}

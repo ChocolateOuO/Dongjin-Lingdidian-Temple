@@ -12,6 +12,8 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
-    "puppeteer-core": "^25.9.0"
+    "@11ty/eleventy-img": "^7.0.0",
+    "puppeteer-core": "^25.9.0",
+    "sharp": "^0.35.4"
   }
 }

@@ -21,6 +21,15 @@ export default {
     facebook: "",
     line: "",
   },
+  // 照片庫線上上傳用。到 cloudinary.com 開免費帳號後填入：
+  //   cloudName：Dashboard 右上角的 Cloud name
+  //   uploadPreset：Settings > Upload > Upload presets 新增一個 Unsigned preset，
+  //                 建議 Folder 設為 gallery、開啟 Auto-moderation 更保險
+  // 留空時，照片庫仍可瀏覽，但「上傳照片」會顯示「尚未設定圖床」。
+  cloudinary: {
+    cloudName: "",
+    uploadPreset: "",
+  },
   nav: [
     { href: "/", label: "首頁", glyph: "殿" },
     { href: "/about/", label: "廟史與神尊", glyph: "史" },

@@ -2,7 +2,6 @@ export default function (eleventyConfig) {
   // Static passthrough
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/static": "/" });
-  eleventyConfig.addPassthroughCopy({ "images": "images" });
 
   eleventyConfig.addWatchTarget("src/assets/");
 

@@ -1,0 +1,19 @@
+/* 活動照片庫 — 分類篩選列 */
+.cat-bar{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;
+}
+.cat-chip{
+  font-family:"Noto Sans TC",sans-serif;font-size:.82rem;letter-spacing:.06em;
+  padding:7px 16px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--paper-3);background:var(--paper-2);color:var(--ink-soft);
+  transition:border-color .2s,background .2s,color .2s,transform .15s;
+}
+.cat-chip:hover{border-color:var(--gold);transform:translateY(-1px);}
+.cat-chip.active{
+  border-color:var(--red-2);background:var(--red-2);color:var(--paper);font-weight:500;
+}
+
+.gallery-toolbar select#uploadCatSelect{min-width:96px;}
+
+/* photo-card 內建標記 */
+.photo-card .cap{pointer-events:none;}

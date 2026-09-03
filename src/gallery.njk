@@ -1,10 +1,52 @@
 ---
-layout: layouts/stub.njk
+layout: layouts/base.njk
 permalink: /gallery/
 title: 活動照片庫｜東津代天府靈帝殿
-description: 東津代天府靈帝殿歷年遶境、法會與祭典活動照片。
-glyph: 影
-eyebrow: 影像紀錄
-heading: 歷年遶境／活動照片庫
-stubNote: 照片庫正在搬遷至新的線上上傳系統，稍後開放。
+description: 東津代天府靈帝殿歷年遶境、祭典、法會活動照片，依年份與分類整理。
+firebase: true
+extraCss:
+  - gallery.css
+extraJs:
+  - gallery.js
 ---
+
+<section class="page-head" data-glyph="影" style="padding-top:56px;">
+  <div class="container">
+    <div class="eyebrow">影像紀錄</div>
+    <h2 class="title">歷年遶境／活動照片庫</h2>
+    <p class="lede">依年份與分類保存遶境、祭典與廟會活動照片。管理員登入後可上傳、刪除自行新增的照片；標註「內建」的常設照片不會出現刪除鈕。</p>
+
+    <div class="gallery-toolbar">
+      <div>
+        <div class="gt-label">年份</div>
+        <select id="yearSelect"></select>
+      </div>
+      <div class="admin-only block">
+        <div class="gt-label">新增年份</div>
+        <div style="display:flex;gap:8px;">
+          <input type="text" id="newYearInput" placeholder="例如 2027" style="width:100px;">
+          <button class="btn secondary" type="button" id="addYearBtn">新增</button>
+        </div>
+      </div>
+      <div class="admin-only block">
+        <div class="gt-label">上傳分類</div>
+        <select id="uploadCatSelect"></select>
+      </div>
+      <div class="admin-only flex" style="margin-left:auto;gap:10px;align-items:flex-end;">
+        <button class="btn" type="button" id="uploadBtn">＋ 上傳照片</button>
+        <input type="file" id="fileInput" accept="image/*" multiple hidden>
+      </div>
+      <div class="admin-status guest-only" style="font-family:'Noto Sans TC',sans-serif;margin-left:auto;">訪客瀏覽模式，僅管理員可新增／刪除照片</div>
+    </div>
+
+    <div class="cat-bar" id="catBar"></div>
+    <div class="gallery-status" id="galleryStatus">載入中…</div>
+    <div class="photo-grid" id="photoGrid"></div>
+    <div class="empty-state" id="emptyState" style="display:none;">這個條件下還沒有照片。</div>
+  </div>
+</section>
+
+<script>
+  window.__GALLERY_SEED__ = {{ gallery | dump | safe }};
+  window.__CLOUDINARY__ = {{ site.cloudinary | dump | safe }};
+</script>

@@ -584,9 +584,10 @@
   }
 
   /* ---------- ADMIN ---------- */
-  .admin-only{display:none;}
-  body.admin-mode .admin-only{display:inline-flex;}
-  body.admin-mode .admin-only.block{display:block;}
+  .admin-only{display:none !important;}
+  body.admin-mode .admin-only{display:inline-flex !important;}
+  body.admin-mode .admin-only.block{display:block !important;}
+  body.admin-mode .admin-only.flex{display:flex !important;}
   body.admin-mode .guest-only{display:none;}
 
   .admin-corner{
