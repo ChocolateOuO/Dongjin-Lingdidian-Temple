@@ -1299,3 +1299,49 @@
     border:1px solid var(--gold-deep);border-radius:999px;padding:4px 16px;transition:background .2s,color .2s;
   }
   .footer-social a:hover{background:var(--gold);color:var(--ink);}
+
+  /* ---------- 夜間模式 ---------- */
+  :root[data-theme="night"]{
+    --paper:#1a1410;
+    --paper-2:#231b14;
+    --paper-3:#3a2c20;
+    --ink:#ece0c8;
+    --ink-2:#f4ead6;
+    --ink-soft:rgba(236,224,200,.74);
+    --red-2:#e0805f;
+    --cinnabar:#e06a4a;
+    --gold-deep:#c9a24a;
+  }
+  :root[data-theme="night"] body{
+    background-image:
+      radial-gradient(circle at 50% 0%, rgba(224,106,74,.06), transparent 60%);
+  }
+  :root[data-theme="night"] h2.title{color:var(--red-2);}
+  :root[data-theme="night"] .daily-fortune,
+  :root[data-theme="night"] .fortune-card,
+  :root[data-theme="night"] .fortune-slip,
+  :root[data-theme="night"] .lookup-card,
+  :root[data-theme="night"] .blessing-section,
+  :root[data-theme="night"] .blessing-card{
+    background:linear-gradient(170deg,#241c15,#1c150f);
+    border-color:var(--paper-3);
+    box-shadow:none;
+  }
+  :root[data-theme="night"] .fortune-slip{box-shadow:0 0 0 4px #1a1410,0 0 0 5px var(--gold-deep);}
+  :root[data-theme="night"] .result-note,
+  :root[data-theme="night"] .fortune-field input,
+  :root[data-theme="night"] .fortune-field select,
+  :root[data-theme="night"] .matter-chip,
+  :root[data-theme="night"] .lookup-form input,
+  :root[data-theme="night"] .blessing-form input,
+  :root[data-theme="night"] .blessing-form textarea{
+    background:#211a13;color:var(--ink);
+  }
+  :root[data-theme="night"] .map-box iframe{filter:saturate(.8) contrast(1) brightness(.85);}
+
+  .theme-toggle{
+    margin-top:16px;background:none;border:1px solid var(--gold-deep);
+    color:var(--gold-light);font-family:"Noto Sans TC",sans-serif;font-size:.76rem;
+    letter-spacing:.08em;padding:5px 16px;border-radius:999px;transition:background .2s,color .2s;
+  }
+  .theme-toggle:hover{background:var(--gold);color:var(--ink);}

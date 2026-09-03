@@ -35,3 +35,17 @@ extraJs:
     </p>
   </div>
 </section>
+
+{%- set faqFlat = [] %}
+{%- for g in faq.groups %}{% for it in g.items %}{% set faqFlat = (faqFlat.push(it), faqFlat) %}{% endfor %}{% endfor %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for it in faqFlat %}
+    { "@type": "Question", "name": {{ it.q | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ it.a | dump | safe }} } }{{ "," if not loop.last }}
+    {%- endfor %}
+  ]
+}
+</script>

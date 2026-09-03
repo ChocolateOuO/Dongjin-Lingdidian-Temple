@@ -28,6 +28,29 @@
   const fy = document.getElementById("footerYear");
   if (fy) fy.textContent = new Date().getFullYear();
 
+  /* ---------------- 日間 / 夜間模式 ---------------- */
+  (function initTheme() {
+    const root = document.documentElement;
+    let saved = null;
+    try { saved = localStorage.getItem("temple-theme"); } catch (e) {}
+    if (saved === "night") root.setAttribute("data-theme", "night");
+    const btn = document.getElementById("themeToggle");
+    function sync() {
+      const night = root.getAttribute("data-theme") === "night";
+      if (btn) btn.textContent = night ? "☀ 日間模式" : "☾ 夜間模式";
+    }
+    sync();
+    if (btn) {
+      btn.addEventListener("click", () => {
+        const night = root.getAttribute("data-theme") === "night";
+        if (night) root.removeAttribute("data-theme");
+        else root.setAttribute("data-theme", "night");
+        try { localStorage.setItem("temple-theme", night ? "day" : "night"); } catch (e) {}
+        sync();
+      });
+    }
+  })();
+
   /* ---------------- 全站小提示（toast） ---------------- */
   window.showToast = function (msg) {
     const t = document.getElementById("saveToast");
