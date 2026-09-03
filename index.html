@@ -26,6 +26,12 @@
     --ink-soft:rgba(13,9,6,.75);
     --paper-3:#e3d4b0;
     --lacquer:#150d09;
+    --tile-red:#a8341f;
+    --tile-red-2:#7c2415;
+    --marble-black:#0c0e0d;
+    --marble-black-2:#1a1e1c;
+    --spring:cubic-bezier(.34,1.56,.64,1);
+    --ease:cubic-bezier(.22,.9,.26,1);
   }
   html{font-size:107.5%;}
   *{box-sizing:border-box;}
@@ -80,6 +86,13 @@
     pointer-events:none;z-index:0;line-height:1;
   }
   .page-head > .container{position:relative;z-index:1;}
+  .page-head::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:96px;z-index:0;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20900%20140%22%3E%3Cg%3E%3Crect%20x%3D%2214%22%20y%3D%2252%22%20width%3D%2246%22%20height%3D%2240%22%20rx%3D%2218%22%20fill%3D%22none%22%20stroke%3D%22%239c7620%22%20stroke-width%3D%221.6%22/%3E%3Ccircle%20cx%3D%2237%22%20cy%3D%2234%22%20r%3D%2215%22%20fill%3D%22none%22%20stroke%3D%22%239c7620%22%20stroke-width%3D%221.6%22/%3E%3Cpath%20d%3D%22M24%2C24%20Q30%2C12%2037%2C17%20Q44%2C12%2050%2C24%22%20fill%3D%22none%22%20stroke%3D%22%239c7620%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2234%22%20r%3D%221.6%22%20fill%3D%22%239c7620%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%221.6%22%20fill%3D%22%239c7620%22/%3E%3Cpath%20d%3D%22M32%2C40%20Q37%2C44%2042%2C40%22%20fill%3D%22none%22%20stroke%3D%22%239c7620%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2258%22%20cy%3D%2290%22%20r%3D%227%22%20fill%3D%22none%22%20stroke%3D%22%23c8462f%22%20stroke-width%3D%221.4%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28900%2C0%29%20scale%28-1%2C1%29%22%3E%3Crect%20x%3D%2214%22%20y%3D%2252%22%20width%3D%2246%22%20height%3D%2240%22%20rx%3D%2218%22%20fill%3D%22none%22%20stroke%3D%22%239c7620%22%20stroke-width%3D%221.6%22/%3E%3Ccircle%20cx%3D%2237%22%20cy%3D%2234%22%20r%3D%2215%22%20fill%3D%22none%22%20stroke%3D%22%239c7620%22%20stroke-width%3D%221.6%22/%3E%3Cpath%20d%3D%22M24%2C24%20Q30%2C12%2037%2C17%20Q44%2C12%2050%2C24%22%20fill%3D%22none%22%20stroke%3D%22%239c7620%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2234%22%20r%3D%221.6%22%20fill%3D%22%239c7620%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%221.6%22%20fill%3D%22%239c7620%22/%3E%3Cpath%20d%3D%22M32%2C40%20Q37%2C44%2042%2C40%22%20fill%3D%22none%22%20stroke%3D%22%239c7620%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2258%22%20cy%3D%2290%22%20r%3D%227%22%20fill%3D%22none%22%20stroke%3D%22%23c8462f%22%20stroke-width%3D%221.4%22/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:center bottom;background-size:min(900px,92%) 96px;
+    opacity:.16;
+  }
+  @media (max-width:640px){.page-head::after{display:none;}}
 
   /* ---------- NAV ---------- */
   .nav{
@@ -92,23 +105,26 @@
   }
   .nav .brand{
     display:flex;flex-direction:column;align-items:center;line-height:1.2;
-    padding:9px 22px 10px;position:relative;text-align:center;
+    padding:9px 18px 10px;position:relative;text-align:center;
     background:linear-gradient(165deg, #1a1109 0%, #0a0604 100%);
     border-radius:3px;
     border:4px solid transparent;
     border-image:repeating-linear-gradient(180deg, var(--gold-shine) 0 2px, var(--gold-deep) 2px 4px) 4;
     box-shadow:0 6px 16px rgba(0,0,0,.45);
+    flex-shrink:0;white-space:nowrap;
   }
   .nav .brand::before{
     content:"";position:absolute;inset:2px;pointer-events:none;
     border:1px solid rgba(146,32,26,.55);border-radius:2px;
   }
   .nav .brand .brand-sub{
-    font-family:"Noto Sans TC",sans-serif;font-weight:300;font-size:.66rem;
+    display:block;white-space:nowrap;
+    font-family:"Noto Sans TC",sans-serif;font-weight:300;font-size:clamp(.56rem,1.6vw,.66rem);
     letter-spacing:.42em;padding-left:.42em;color:rgba(230,201,119,.8);
   }
   .nav .brand .brand-main{
-    font-family:"Ma Shan Zheng",cursive;font-size:1.68rem;letter-spacing:.16em;
+    display:block;white-space:nowrap;
+    font-family:"Ma Shan Zheng",cursive;font-size:clamp(1.24rem,4.4vw,1.68rem);letter-spacing:.16em;
     background:linear-gradient(180deg,var(--gold-shine) 0%,var(--gold) 42%,var(--gold-deep) 78%,#7a5a18 100%);
     background-size:100% 220%;
     -webkit-background-clip:text;background-clip:text;color:transparent;
@@ -161,12 +177,12 @@
   section{padding:clamp(56px,8vw,96px) 0;position:relative;}
   section + section{border-top:none;}
   section + section::before{
-    content:"";position:absolute;top:-1px;left:0;right:0;height:10px;
-    background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2228%22%20height%3D%2210%22%20viewBox%3D%220%200%2028%2010%22%3E%3Cpath%20d%3D%22M0%2C8%20H4%20V2%20H10%20V8%20H14%20V2%20H20%20V8%20H24%20V2%20H28%22%20fill%3D%22none%22%20stroke%3D%22%23d4a636%22%20stroke-width%3D%221.6%22/%3E%3C/svg%3E");
-    background-repeat:repeat-x;background-size:auto 10px;opacity:.6;
+    content:"";position:absolute;top:-1px;left:0;right:0;height:16px;
+    background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2264%22%20height%3D%2216%22%20viewBox%3D%220%200%2064%2016%22%3E%3Cpath%20d%3D%22M0%2C13%20Q8%2C2%2016%2C13%20Q24%2C2%2032%2C13%20Q40%2C2%2048%2C13%20Q56%2C2%2064%2C13%22%20fill%3D%22none%22%20stroke%3D%22%23d4a636%22%20stroke-width%3D%221.5%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%223.4%22%20r%3D%221.7%22%20fill%3D%22%23c8462f%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%223.4%22%20r%3D%221.7%22%20fill%3D%22%23c8462f%22/%3E%3C/svg%3E");
+    background-repeat:repeat-x;background-size:auto 16px;opacity:.65;
   }
   section + section::after{
-    content:"";position:absolute;top:9px;left:0;right:0;border-top:1px solid var(--paper-3);
+    content:"";position:absolute;top:13px;left:0;right:0;border-top:1px solid var(--paper-3);
   }
 
   h2.title{
@@ -256,6 +272,10 @@
     border-top:2px solid rgba(230,201,119,.45);border-left:2px solid rgba(230,201,119,.45);
     pointer-events:none;
   }
+  .hero-cloud{
+    position:absolute;top:18px;left:16px;width:46px;height:34px;opacity:.4;pointer-events:none;z-index:1;
+  }
+  .hero-cloud svg{width:100%;height:100%;}
   .hero::after{
     content:"";position:absolute;bottom:26px;left:26px;width:38px;height:38px;
     border-bottom:2px solid rgba(230,201,119,.45);border-left:2px solid rgba(230,201,119,.45);
@@ -266,9 +286,12 @@
   .pill-btn{
     border:1px solid var(--gold);color:var(--gold-light);
     padding:11px 22px;border-radius:999px;font-family:"Noto Sans TC",sans-serif;
-    font-size:.9rem;letter-spacing:.08em;transition:all .25s;background:transparent;
+    font-size:.9rem;letter-spacing:.08em;transition:background .25s ease, color .25s ease, transform .3s var(--spring), box-shadow .3s ease;
+    background:transparent;
     position:relative;overflow:hidden;
   }
+  .pill-btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.25);}
+  .pill-btn:active{transform:translateY(0) scale(.97);box-shadow:none;}
   .pill-btn::before{
     content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
     background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);
@@ -283,9 +306,10 @@
   .quick-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:44px;}
   .quick-card{
     background:var(--paper-2);border:1px solid var(--paper-3);border-radius:6px;
-    padding:26px 22px;transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    padding:26px 22px;transition:transform .4s var(--spring), box-shadow .35s var(--ease), border-color .3s ease;
     cursor:pointer;position:relative;overflow:hidden;
   }
+  .quick-card:active{transform:translateY(-2px) scale(.98);}
   .quick-card::before{
     content:"";position:absolute;top:0;left:0;right:0;height:3px;
     background:linear-gradient(90deg,var(--gold),var(--jade-light));
@@ -311,15 +335,20 @@
     padding:2px 8px;border-radius:3px;margin-right:10px;letter-spacing:.06em;
   }
 
-  /* deity cards */
-  .deity-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;margin-top:40px;}
+  /* deity cards：外殼倣黑漆木雕描金神龕，內層裝金身，四角描金雕花 */
+  .deity-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px;margin-top:40px;}
   .deity-card{
-    background:var(--paper);border:1px solid var(--paper-3);border-radius:6px;overflow:hidden;
-    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    background:linear-gradient(165deg,var(--marble-black-2),var(--marble-black));
+    border:1px solid rgba(212,166,54,.32);border-radius:12px;overflow:hidden;
+    padding:8px 8px 0;
+    transition:transform .4s var(--spring), box-shadow .4s var(--ease), border-color .3s ease;
+    box-shadow:0 3px 10px rgba(0,0,0,.3);
   }
-  .deity-card:hover{transform:translateY(-5px);box-shadow:0 16px 30px rgba(0,0,0,.14);border-color:var(--gold);}
+  .deity-card:hover{transform:translateY(-6px);box-shadow:0 20px 36px rgba(0,0,0,.4);border-color:var(--gold);}
+  .deity-card:active{transform:translateY(-3px) scale(.99);}
   .deity-card .frame{
     aspect-ratio:900/1238;display:flex;align-items:center;justify-content:center;position:relative;
+    border-radius:5px;
     background:
       radial-gradient(circle at 30% 20%, rgba(79,174,130,.35), transparent 55%),
       radial-gradient(circle at 75% 80%, rgba(212,166,54,.3), transparent 55%),
@@ -328,29 +357,37 @@
     overflow:hidden;
   }
   .deity-card .frame::before{
-    content:"";position:absolute;inset:0;opacity:.5;
+    content:"";position:absolute;inset:0;opacity:.5;z-index:0;
     background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2260%22%20height%3D%2260%22%3E%3Cpath%20d%3D%22M0%2C30%20Q15%2C10%2030%2C30%20T60%2C30%22%20fill%3D%22none%22%20stroke%3D%22%234fae82%22%20stroke-width%3D%221%22%20opacity%3D%22.5%22/%3E%3Cpath%20d%3D%22M0%2C45%20Q15%2C25%2030%2C45%20T60%2C45%22%20fill%3D%22none%22%20stroke%3D%22%23d4a636%22%20stroke-width%3D%221%22%20opacity%3D%22.4%22/%3E%3C/svg%3E");
     background-size:60px 60px;
   }
   .deity-card .frame span{position:relative;z-index:1;}
-  .deity-card .frame{transition:background .3s ease;}
   .deity-card:hover .frame::before{transform:scale(1.15) rotate(3deg);transition:transform .5s ease;}
-  .deity-card .info{padding:18px 20px;}
-  .deity-card h3{color:var(--red-2);font-size:1.1rem;}
-  .deity-card p{font-family:"Noto Sans TC",sans-serif;font-weight:300;font-size:.92rem;color:var(--ink-soft);margin-top:8px;}
+  /* 描金雕花轉角：呼應神龕木雕描金裝飾 */
+  .deity-card .frame::after{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
+    background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2090%20124%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23d4a636%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.85%22%3E%3Cpath%20d%3D%22M10%2C34%20L10%2C14%20Q10%2C8%2016%2C8%20L34%2C8%22/%3E%3Cpath%20d%3D%22M80%2C34%20L80%2C14%20Q80%2C8%2074%2C8%20L56%2C8%22/%3E%3Cpath%20d%3D%22M10%2C90%20L10%2C110%20Q10%2C116%2016%2C116%20L34%2C116%22/%3E%3Cpath%20d%3D%22M80%2C90%20L80%2C110%20Q80%2C116%2074%2C116%20L56%2C116%22/%3E%3C/g%3E%3Cg%20fill%3D%22%23c8462f%22%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%2234%22%20r%3D%221.6%22/%3E%3Ccircle%20cx%3D%2280%22%20cy%3D%2234%22%20r%3D%221.6%22/%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%2290%22%20r%3D%221.6%22/%3E%3Ccircle%20cx%3D%2280%22%20cy%3D%2290%22%20r%3D%221.6%22/%3E%3C/g%3E%3C/svg%3E");
+    background-size:100% 100%;background-repeat:no-repeat;
+  }
+  .deity-card .info{padding:16px 12px 18px;}
+  .deity-card h3{color:var(--gold-light);font-size:1.1rem;}
+  .deity-card p{font-family:"Noto Sans TC",sans-serif;font-weight:300;font-size:.92rem;color:rgba(241,231,212,.68);margin-top:8px;}
 
   /* 有照片的神尊卡：雙層金框＋暗角，提升莊嚴感 */
   .deity-card.has-photo .frame{background:var(--ink-2);}
-  .deity-card.has-photo .frame::before{content:none;}
+  .deity-card.has-photo .frame::before{
+    content:"";position:absolute;inset:0;z-index:1;background-size:auto;opacity:1;
+    background-image:linear-gradient(0deg, rgba(10,6,4,.62) 0%, rgba(10,6,4,0) 26%, rgba(10,6,4,0) 78%, rgba(10,6,4,.28) 100%);
+  }
   .deity-card .deity-photo{
     position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 18%;
     display:block;
   }
-  .deity-card.has-photo .frame::after{
-    content:"";position:absolute;inset:0;pointer-events:none;
+  .deity-card.has-photo .frame{
     box-shadow:inset 0 0 0 2px rgba(212,166,54,.85), inset 0 0 34px rgba(0,0,0,.55);
-    background:linear-gradient(0deg, rgba(10,6,4,.62) 0%, rgba(10,6,4,0) 26%, rgba(10,6,4,0) 78%, rgba(10,6,4,.28) 100%);
   }
+  /* 有真實神尊照片時，取消描金雕花轉角疊圖，避免遮擋面容與頭冠 */
+  .deity-card.has-photo .frame::after{background-image:none;}
   .deity-card .deity-seal{
     position:absolute;top:10px;left:10px;z-index:2;width:38px;height:38px;border-radius:50%;
     display:flex;align-items:center;justify-content:center;
@@ -502,19 +539,49 @@
   .lightbox .cap{color:var(--paper);margin-top:14px;font-family:"Noto Sans TC",sans-serif;font-size:.85rem;text-align:center;}
 
   footer{
-    background:var(--lacquer);color:rgba(241,231,212,.65);text-align:center;
-    padding:38px 20px 32px;font-family:"Noto Sans TC",sans-serif;font-size:.84rem;letter-spacing:.05em;
-    border-top:none;position:relative;
+    background:
+      radial-gradient(circle at 50% -20%, rgba(212,166,54,.06), transparent 55%),
+      var(--lacquer);
+    color:rgba(241,231,212,.65);text-align:center;
+    padding:44px 20px 34px;font-family:"Noto Sans TC",sans-serif;font-size:.84rem;letter-spacing:.05em;
+    border-top:none;position:relative;overflow:hidden;
   }
   footer::before{
-    content:"";position:absolute;top:0;left:0;right:0;height:10px;
-    background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2228%22%20height%3D%2210%22%20viewBox%3D%220%200%2028%2010%22%3E%3Cpath%20d%3D%22M0%2C8%20H4%20V2%20H10%20V8%20H14%20V2%20H20%20V8%20H24%20V2%20H28%22%20fill%3D%22none%22%20stroke%3D%22%23d4a636%22%20stroke-width%3D%221.6%22/%3E%3C/svg%3E");
-    background-repeat:repeat-x;background-size:auto 10px;opacity:.7;
+    content:"";position:absolute;top:0;left:0;right:0;height:16px;
+    background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2264%22%20height%3D%2216%22%20viewBox%3D%220%200%2064%2016%22%3E%3Cpath%20d%3D%22M0%2C13%20Q8%2C2%2016%2C13%20Q24%2C2%2032%2C13%20Q40%2C2%2048%2C13%20Q56%2C2%2064%2C13%22%20fill%3D%22none%22%20stroke%3D%22%23d4a636%22%20stroke-width%3D%221.5%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%223.4%22%20r%3D%221.7%22%20fill%3D%22%23c8462f%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%223.4%22%20r%3D%221.7%22%20fill%3D%22%23c8462f%22/%3E%3C/svg%3E");
+    background-repeat:repeat-x;background-size:auto 16px;opacity:.7;
   }
   .footer-motif{
     width:34px;height:34px;margin:0 auto 14px;opacity:.85;
   }
   .footer-motif svg{width:100%;height:100%;}
+
+  /* 黑漆金字對聯：呼應廟內黑漆木雕描金對聯的視覺語彙，純裝飾用途 */
+  .footer-couplets{
+    display:flex;align-items:center;justify-content:center;gap:clamp(18px,6vw,64px);
+    margin-bottom:22px;
+  }
+  .couplet-panel{
+    background:linear-gradient(160deg,var(--marble-black-2),var(--marble-black));
+    border:1px solid rgba(212,166,54,.35);
+    border-radius:2px;
+    padding:14px 8px;
+    box-shadow:inset 0 0 0 1px rgba(212,166,54,.08), 0 4px 14px rgba(0,0,0,.4);
+  }
+  .couplet-panel span{
+    writing-mode:vertical-rl;text-orientation:upright;
+    font-family:"Noto Serif TC",serif;font-weight:600;font-size:.92rem;
+    letter-spacing:.5em;
+    background:linear-gradient(180deg,var(--gold-shine),var(--gold) 55%,var(--gold-deep));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .footer-lion{width:30px;height:30px;opacity:.8;flex-shrink:0;}
+  .footer-lion svg{width:100%;height:100%;}
+  @media (max-width:520px){
+    .footer-couplets{gap:14px;}
+    .couplet-panel{padding:10px 6px;}
+    .couplet-panel span{font-size:.78rem;letter-spacing:.4em;}
+  }
 
   /* ---------- ADMIN ---------- */
   .admin-only{display:none;}
@@ -942,40 +1009,183 @@
   }
   @keyframes introFadeDown{from{opacity:0;transform:translate(-50%,-14px);}to{opacity:1;transform:translate(-50%,0);}}
   .intro-plaque{
+    position:relative;
     font-family:"Noto Serif TC",serif;font-weight:700;letter-spacing:.5em;padding-left:.5em;
-    font-size:clamp(1rem,2.6vw,1.35rem);color:var(--gold-light);
-    background:linear-gradient(160deg,#241610,var(--lacquer));
-    border:2px solid var(--gold-deep);border-radius:2px;
-    padding:10px 20px;box-shadow:0 8px 22px rgba(0,0,0,.5), inset 0 0 0 1px rgba(212,166,54,.25);
-    text-shadow:0 0 10px rgba(242,212,119,.35);
+    font-size:clamp(1rem,2.6vw,1.35rem);white-space:nowrap;
+    background:linear-gradient(165deg, #1a1109 0%, #0a0604 100%);
+    border-radius:2px;
+    border:4px solid transparent;
+    border-image:repeating-linear-gradient(180deg, var(--gold-shine) 0 2px, var(--gold-deep) 2px 4px) 4;
+    padding:10px 20px;box-shadow:0 8px 22px rgba(0,0,0,.5);
   }
-  .intro-plaque-sub{
-    margin-top:8px;font-family:"Noto Sans TC",sans-serif;font-size:.72rem;letter-spacing:.3em;
-    color:rgba(230,201,119,.55);
+  .intro-plaque::before{
+    content:"";position:absolute;inset:2px;pointer-events:none;
+    border:1px solid rgba(146,32,26,.55);border-radius:1px;
+  }
+  .intro-plaque-text{
+    background:linear-gradient(180deg,var(--gold-shine) 0%,var(--gold) 42%,var(--gold-deep) 78%,#7a5a18 100%);
+    background-size:100% 220%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 1px 0 rgba(0,0,0,.65), 0 -1px 0 rgba(255,236,180,.2);
+    animation:goldShimmer 9s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion:reduce){
+    .intro-plaque-text{animation:none;}
+  }
+
+  /* 廟門整體外觀：兩側廟柱（含對聯）＋ 中間廟門 */
+  .intro-shrine{
+    position:relative;
+    width:min(96vw,980px);height:min(78vh,640px);
+    display:flex;align-items:stretch;justify-content:center;gap:clamp(4px,1vw,10px);
+  }
+
+  .intro-pillar{
+    flex:0 0 clamp(24px,5vw,50px);
+    position:relative;
+    transition:opacity .8s ease .1s, transform .8s ease .1s;
+    background-image:
+      repeating-linear-gradient(178deg, rgba(0,0,0,.10) 0 2px, transparent 2px 7px),
+      repeating-linear-gradient(2deg, rgba(255,255,255,.05) 0 1px, transparent 1px 9px),
+      linear-gradient(rgba(130,24,16,.55), rgba(70,12,9,.6)),
+      url('assets/pillar-relief.jpg'),
+      linear-gradient(90deg,
+        #330705 0%, #6e130f 8%, #9c2a1f 18%, #c04a35 30%, #d97650 40%,
+        #c04a35 50%, #9c2a1f 64%, #6e130f 80%, #330705 94%, #200504 100%);
+    background-repeat:repeat, repeat, no-repeat, no-repeat, no-repeat;
+    background-size:auto, auto, 100% 42%, 150% auto, 100% 100%;
+    background-position:0 0, 0 0, center 30%, center 26%, center;
+    background-blend-mode:normal, normal, multiply, soft-light, normal;
+    border-radius:3px;
+    box-shadow:
+      inset 2px 0 4px rgba(255,200,150,.12),
+      inset -4px 0 10px rgba(0,0,0,.55),
+      inset 0 0 30px rgba(0,0,0,.2),
+      0 10px 20px rgba(0,0,0,.4);
+  }
+  .intro-pillar-sheen{
+    position:absolute;inset:0;pointer-events:none;border-radius:inherit;overflow:hidden;
+    background:linear-gradient(115deg, transparent 38%, rgba(255,244,214,.28) 50%, transparent 62%);
+    background-size:240% 240%;
+    opacity:0;
+    animation:templeSheen 7.5s ease-in-out infinite;
+    transition:opacity .5s ease;
+    will-change:background-position, opacity;
+  }
+  .intro-pillar.right .intro-pillar-sheen{animation-delay:-3.4s;}
+  .intro-pillar::before{
+    content:"";position:absolute;top:0;left:-4px;right:-4px;height:20px;
+    background-image:
+      linear-gradient(rgba(255,255,255,.08), rgba(0,0,0,.28)),
+      url('assets/pillar-crown.jpg'),
+      linear-gradient(180deg,var(--gold-shine) 0%,var(--gold) 45%,var(--gold-deep) 75%,#5e430f 100%);
+    background-repeat:no-repeat, no-repeat, no-repeat;
+    background-size:100% 100%, cover, 100% 100%;
+    background-position:center, center 18%, center;
+    background-blend-mode:normal, soft-light, normal;
+    border-radius:3px 3px 0 0;
+    box-shadow:
+      0 3px 6px rgba(0,0,0,.45),
+      inset 0 6px 0 -3px rgba(255,255,255,.35),
+      inset 0 -6px 0 -3px rgba(0,0,0,.4);
+  }
+  .intro-pillar::after{
+    content:"";position:absolute;bottom:0;left:-6px;right:-6px;height:22px;
+    background-image:
+      linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.55)),
+      url('assets/pillar-base.jpg'),
+      linear-gradient(180deg,#3a1f0c 0%,#241209 55%,#0e0704 100%);
+    background-repeat:no-repeat, no-repeat, no-repeat;
+    background-size:100% 100%, cover, 100% 100%;
+    background-position:center, center 55%, center;
+    background-blend-mode:normal, soft-light, normal;
+    border-radius:0 0 4px 4px;
+    box-shadow:
+      0 4px 10px rgba(0,0,0,.5),
+      inset 0 1px 0 rgba(212,166,54,.5),
+      inset 0 7px 0 -5px rgba(212,166,54,.3),
+      inset 0 -3px 4px rgba(0,0,0,.5);
+  }
+  @keyframes templeSheen{
+    0%{background-position:-40% -40%;opacity:0;}
+    5%{opacity:.9;}
+    28%{background-position:140% 140%;opacity:.9;}
+    38%,100%{background-position:140% 140%;opacity:0;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .intro-pillar-sheen{animation:none;background-position:40% 40%;opacity:.4;}
+  }
+  .intro-gate.opening .intro-pillar{
+    opacity:0;
+    transform:scale(.96) translateY(4px);
+  }
+  .intro-gate.opening .intro-pillar-sheen{
+    animation-play-state:paused;opacity:0;
+  }
+  .intro-pillar-groove{
+    position:absolute;top:22px;bottom:26px;left:50%;transform:translateX(-50%);
+    width:62%;border-radius:2px;
+    background:linear-gradient(180deg,#2a0806,#3a0f0a 50%,#2a0806);
+    box-shadow:
+      inset 0 0 6px rgba(0,0,0,.6),
+      inset 2px 0 3px rgba(0,0,0,.5),
+      inset -1px 0 2px rgba(255,180,120,.08),
+      0 0 0 1px rgba(212,166,54,.35);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .intro-couplet{
+    writing-mode:vertical-rl;text-orientation:upright;
+    font-family:"Noto Serif TC",serif;font-weight:700;
+    font-size:clamp(.6rem,1.3vw,.88rem);letter-spacing:.32em;
+    background:linear-gradient(180deg,var(--gold-shine) 0%,var(--gold) 45%,var(--gold-deep) 85%,#7a5a18 100%);
+    background-size:100% 220%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 1px 1px rgba(0,0,0,.5);
+    filter:drop-shadow(0 0 1px rgba(0,0,0,.6));
+    animation:goldShimmer 9s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion:reduce){
+    .intro-couplet{animation:none;}
+  }
+  @media (max-width:560px){
+    .intro-pillar{display:none;} /* 螢幕太窄時廟柱先隱藏，避免廟門被擠壓變形 */
   }
 
   .intro-doors{
-    position:relative;width:min(94vw,900px);height:min(78vh,640px);
+    position:relative;flex:1 1 auto;height:100%;max-width:900px;
     display:flex;perspective:1600px;
   }
   .intro-door{
     width:50%;height:100%;position:relative;overflow:hidden;
-    background:
-      repeating-linear-gradient(180deg, rgba(0,0,0,.08) 0 2px, transparent 2px 5px),
-      linear-gradient(160deg, var(--cinnabar) 0%, var(--red) 45%, var(--red-2) 85%, var(--ink-2) 140%);
+    backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    background-repeat:repeat, no-repeat, no-repeat;
+    background-size:auto, 100% 100%, cover;
+    background-position:0 0, center, center 22%;
+    background-blend-mode:normal, multiply, normal;
     box-shadow:inset 0 0 80px rgba(0,0,0,.5), inset 0 0 0 2px rgba(212,166,54,.3);
     transition:transform 1.15s cubic-bezier(.76,0,.15,1);
     transform-style:preserve-3d;cursor:pointer;
   }
-  .intro-door.left{transform-origin:left center;border-radius:2px 0 0 2px;}
-  .intro-door.right{transform-origin:right center;border-radius:0 2px 2px 0;}
-
+  .intro-door.left{
+    transform-origin:left center;border-radius:2px 0 0 2px;
+    background-image:
+      repeating-linear-gradient(180deg, rgba(0,0,0,.08) 0 2px, transparent 2px 5px),
+      linear-gradient(160deg, rgba(190,62,45,.55) 0%, rgba(140,32,26,.6) 45%, rgba(55,14,11,.72) 85%, rgba(20,12,9,.88) 140%),
+      url('assets/door-god.jpg');
+  }
+  .intro-door.right{
+    transform-origin:right center;border-radius:0 2px 2px 0;
+    background-image:
+      repeating-linear-gradient(180deg, rgba(0,0,0,.08) 0 2px, transparent 2px 5px),
+      linear-gradient(160deg, rgba(190,62,45,.55) 0%, rgba(140,32,26,.6) 45%, rgba(55,14,11,.72) 85%, rgba(20,12,9,.88) 140%),
+      url('assets/door-god-r.jpg');
+  }
   .intro-door::before{
     content:"";position:absolute;inset:9% 14%;
     background-image:radial-gradient(circle at center, var(--gold-shine) 0 2px, var(--gold-deep) 2.4px 3.2px, transparent 3.6px);
     background-size:calc(100%/4) calc(100%/8);
     background-position:calc(100%/8) calc(100%/16);
-    background-repeat:repeat;opacity:.85;
+    background-repeat:repeat;opacity:.55;
     filter:drop-shadow(0 1px 1px rgba(0,0,0,.5));
   }
   .intro-door::after{
@@ -985,14 +1195,6 @@
   }
   .intro-door .door-frame-inner{
     position:absolute;inset:9% 14%;border:1px solid rgba(212,166,54,.55);pointer-events:none;
-  }
-
-  .intro-glyph{
-    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-    font-family:"Ma Shan Zheng",cursive;font-size:clamp(2.2rem,7vw,3.6rem);
-    color:var(--gold-light);letter-spacing:.12em;line-height:1.5;text-align:center;
-    text-shadow:0 3px 14px rgba(0,0,0,.55), 0 0 22px rgba(242,212,119,.25);
-    opacity:.95;transition:opacity .4s ease;writing-mode:vertical-rl;
   }
 
   .intro-knocker{
@@ -1020,6 +1222,9 @@
     70%{box-shadow:0 0 0 16px rgba(242,212,119,0);}
     100%{box-shadow:0 0 0 0 rgba(242,212,119,0);}
   }
+  .intro-gate.opening .intro-door::before{
+    filter:none;
+  }
   .intro-gate.opening .intro-knocker-glow{animation:none;box-shadow:none;}
   .intro-door.left{--knock-x:-6px;}
   .intro-door.right{--knock-x:6px;}
@@ -1029,16 +1234,6 @@
     30%{transform:translateX(var(--knock-x,0));}
     60%{transform:translateX(calc(var(--knock-x,0) * -0.5));}
   }
-
-  .intro-guardian{
-    position:absolute;bottom:0;width:clamp(46px,9vw,84px);opacity:.85;
-    filter:drop-shadow(0 6px 10px rgba(0,0,0,.5));
-    transition:opacity .8s ease .1s, transform .8s ease .1s;
-  }
-  .intro-guardian.left{left:clamp(-6px,-2vw,4px);}
-  .intro-guardian.right{right:clamp(-6px,-2vw,4px);transform:scaleX(-1);}
-  .intro-gate.opening .intro-guardian.left{opacity:0;transform:translateX(-16px);}
-  .intro-gate.opening .intro-guardian.right{opacity:0;transform:scaleX(-1) translateX(-16px);}
 
   .intro-hint{
     position:absolute;bottom:clamp(14px,4vh,34px);left:50%;transform:translateX(-50%);
@@ -1054,7 +1249,6 @@
 
   .intro-gate.opening .intro-door.left{transform:rotateY(-108deg);}
   .intro-gate.opening .intro-door.right{transform:rotateY(108deg);}
-  .intro-gate.opening .intro-glyph{opacity:0;}
 
   @media (prefers-reduced-motion:reduce){
     .intro-knocker-glow{animation:none;}
@@ -1095,44 +1289,29 @@
   <div class="intro-courtglow"></div>
 
   <div class="intro-plaque-wrap">
-    <div class="intro-plaque">代天巡狩・靈帝殿</div>
-    <div class="intro-plaque-sub">東津代天府</div>
+    <div class="intro-plaque"><span class="intro-plaque-text">東津代天府靈帝殿</span></div>
   </div>
 
-  <div class="intro-doors" id="introDoors">
-    <div class="intro-guardian left" aria-hidden="true">
-      <svg viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="30" cy="66" rx="24" ry="4" fill="rgba(0,0,0,.35)"/>
-        <path d="M30 8c9 0 15 7 15 15 0 5-2 8-2 8s5 2 6 9c1 8-3 15-3 15l-4 6H18l-4-6s-4-7-3-15c1-7 6-9 6-9s-2-3-2-8c0-8 6-15 15-15z" fill="#7d7d78"/>
-        <path d="M30 8c9 0 15 7 15 15 0 5-2 8-2 8s5 2 6 9c1 8-3 15-3 15l-4 6H18l-4-6s-4-7-3-15c1-7 6-9 6-9s-2-3-2-8c0-8 6-15 15-15z" fill="url(#lionShade)" opacity=".55"/>
-        <circle cx="23" cy="26" r="3" fill="#2a2a26"/>
-        <circle cx="37" cy="26" r="3" fill="#2a2a26"/>
-        <path d="M18 42c4 4 20 4 24 0" stroke="#4a4a44" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d="M14 20c0-8 6-14 16-14M46 20c0-8-6-14-16-14" stroke="#4a4a44" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <defs><linearGradient id="lionShade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".25"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></linearGradient></defs>
-      </svg>
+  <div class="intro-shrine">
+    <div class="intro-pillar left" aria-hidden="true">
+      <div class="intro-pillar-sheen"></div>
+      <div class="intro-pillar-groove"><span class="intro-couplet">靈座玄宮護法代天清世界</span></div>
     </div>
 
-    <div class="intro-door left" data-half="left">
-      <div class="door-frame-inner"></div>
-      <div class="intro-glyph">神荼</div>
-      <div class="intro-knocker"><span class="intro-knocker-glow"></span></div>
-    </div>
-    <div class="intro-door right" data-half="right">
-      <div class="door-frame-inner"></div>
-      <div class="intro-glyph">鬱壘</div>
-      <div class="intro-knocker"><span class="intro-knocker-glow"></span></div>
+    <div class="intro-doors" id="introDoors">
+      <div class="intro-door left" data-half="left">
+        <div class="door-frame-inner"></div>
+        <div class="intro-knocker"><span class="intro-knocker-glow"></span></div>
+      </div>
+      <div class="intro-door right" data-half="right">
+        <div class="door-frame-inner"></div>
+        <div class="intro-knocker"><span class="intro-knocker-glow"></span></div>
+      </div>
     </div>
 
-    <div class="intro-guardian right" aria-hidden="true">
-      <svg viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="30" cy="66" rx="24" ry="4" fill="rgba(0,0,0,.35)"/>
-        <path d="M30 8c9 0 15 7 15 15 0 5-2 8-2 8s5 2 6 9c1 8-3 15-3 15l-4 6H18l-4-6s-4-7-3-15c1-7 6-9 6-9s-2-3-2-8c0-8 6-15 15-15z" fill="#7d7d78"/>
-        <circle cx="23" cy="26" r="3" fill="#2a2a26"/>
-        <circle cx="37" cy="26" r="3" fill="#2a2a26"/>
-        <path d="M18 42c4 4 20 4 24 0" stroke="#4a4a44" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d="M14 20c0-8 6-14 16-14M46 20c0-8-6-14-16-14" stroke="#4a4a44" stroke-width="2" fill="none" stroke-linecap="round"/>
-      </svg>
+    <div class="intro-pillar right" aria-hidden="true">
+      <div class="intro-pillar-sheen"></div>
+      <div class="intro-pillar-groove"><span class="intro-couplet">帝稱無極伏魔到府利人間</span></div>
     </div>
   </div>
 
@@ -1200,7 +1379,13 @@
       </svg>
     </div>
     <div class="temple-glyph">殿</div>
-    <div class="container" id="edit-c1" data-editable-region="1">
+    <div class="hero-cloud" aria-hidden="true">
+      <svg viewBox="0 0 46 34">
+        <path d="M4 24 Q8 15 16 17 Q20 8 28 13 Q26 20 20 18 Q16 26 8 24 Q6 26 4 24Z" fill="none" stroke="var(--gold-light)" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <!-- edit-c1：可編輯區域，工程師直接改本區塊程式碼時，記得把 data-content-version 數字調高，否則管理員舊的網頁存檔會蓋掉這次修改（詳見上方 CONTENT_KEY_PREFIX 附近的完整說明）。 -->
+    <div class="container" id="edit-c1" data-editable-region="1" data-content-version="1">
       <div class="eyebrow" style="display:flex;align-items:center;">
         <span class="lion-badge" aria-hidden="true">
           <svg viewBox="0 0 40 44">
@@ -1224,7 +1409,8 @@
   </header>
 
   <section>
-    <div class="container" id="edit-c2" data-editable-region="1">
+    <!-- edit-c2：可編輯區域，工程師直接改本區塊程式碼時，記得把 data-content-version 數字調高，否則管理員舊的網頁存檔會蓋掉這次修改（詳見上方 CONTENT_KEY_PREFIX 附近的完整說明）。 -->
+    <div class="container" id="edit-c2" data-editable-region="1" data-content-version="1">
       <div class="eyebrow">導覽</div>
       <h2 class="title">網站分頁導覽</h2>
       <p class="lede">內容已依性質整理為五個分頁，方便信眾快速查找。</p>
@@ -1259,7 +1445,8 @@
   </section>
 
   <section>
-    <div class="container" id="edit-c3" data-editable-region="1">
+    <!-- edit-c3：可編輯區域，工程師直接改本區塊程式碼時，記得把 data-content-version 數字調高，否則管理員舊的網頁存檔會蓋掉這次修改（詳見上方 CONTENT_KEY_PREFIX 附近的完整說明）。 -->
+    <div class="container" id="edit-c3" data-editable-region="1" data-content-version="1">
       <div class="eyebrow">最新消息</div>
       <h2 class="title">公告事項</h2>
       <div class="notice-list" id="noticeList">
@@ -1284,7 +1471,8 @@
 <!-- ============ ABOUT (history + deities) ============ -->
 <div class="page" id="page-about">
   <section class="page-head" data-glyph="史" style="padding-top:56px;">
-    <div class="container" id="edit-c4" data-editable-region="1">
+    <!-- edit-c4：可編輯區域，工程師直接改本區塊程式碼時，記得把 data-content-version 數字調高，否則管理員舊的網頁存檔會蓋掉這次修改（詳見上方 CONTENT_KEY_PREFIX 附近的完整說明）。 -->
+    <div class="container" id="edit-c4" data-editable-region="1" data-content-version="1">
       <div class="eyebrow">廟宇資訊展示</div>
       <h2 class="title">廟史沿革</h2>
       <p class="lede">
@@ -1323,7 +1511,19 @@
   </section>
 
   <section>
-    <div class="container" id="edit-c5" data-editable-region="1">
+    <!--
+      #edit-c5：神尊介紹區塊（含照片）。
+      故意「沒有」加 data-editable-region 屬性 —— 這是刻意的決定，
+      不是漏加！原本這裡有這個屬性，導致管理員某次網頁編輯存檔後，
+      工程師怎麼改照片的 HTML 都會被雲端舊存檔蓋掉（2026/7/27 排查
+      過的真實案例）。後來決定讓這區永久由程式碼控制，管理員的
+      「開始編輯內容」功能不會、也不應該再顯示這個區塊可編輯。
+      如果之後又想讓這裡恢復成可編輯，請先讀懂上面 CONTENT_KEY_PREFIX
+      附近那段「給未來維護這個網站的人」的完整說明，並考慮改用
+      data-content-version 版本比對機制（方案二），而不是直接加回
+      data-editable-region（方案一會讓同樣的問題重演）。
+    -->
+    <div class="container" id="edit-c5">
       <div class="eyebrow">主祀神尊</div>
       <h2 class="title">奉祀神尊</h2>
       <p class="lede">主祀代天巡狩何府大千歲，隨祀劍將軍、印將軍；陪祀茅府、馬府、泗府、伍府、池府、范府、雷府等千歲，
@@ -1332,8 +1532,6 @@
         <div class="deity-card has-photo">
           <div class="frame">
             <img class="deity-photo" src="images/deity-he.webp" alt="代天巡狩何府大千歲 神尊金身" loading="lazy">
-            <span class="deity-seal">何</span>
-            <span class="deity-name-tag">首王・代天巡狩</span>
           </div>
           <div class="info">
             <h3>代天巡狩何府大千歲</h3>
@@ -1357,8 +1555,6 @@
         <div class="deity-card has-photo">
           <div class="frame">
             <img class="deity-photo" src="images/deity-si.webp" alt="泗府千歲 神尊金身" loading="lazy">
-            <span class="deity-seal">泗</span>
-            <span class="deity-name-tag">真空堂・堂主神</span>
           </div>
           <div class="info">
             <h3>泗府千歲</h3>
@@ -1368,8 +1564,6 @@
         <div class="deity-card has-photo">
           <div class="frame">
             <img class="deity-photo" src="images/deity-wu.webp" alt="伍府千歲 神尊金身" loading="lazy">
-            <span class="deity-seal">伍</span>
-            <span class="deity-name-tag">班頭所屬主神</span>
           </div>
           <div class="info">
             <h3>伍府千歲</h3>
@@ -1379,8 +1573,6 @@
         <div class="deity-card has-photo">
           <div class="frame">
             <img class="deity-photo" src="images/deity-zhongjun.webp" alt="正科中軍府 吳中軍府 令牌與班頭神像" loading="lazy">
-            <span class="deity-seal">中</span>
-            <span class="deity-name-tag">正科中軍府令</span>
           </div>
           <div class="info">
             <h3>正科中軍府 · 吳中軍府</h3>
@@ -1395,7 +1587,8 @@
 <!-- ============ STORIES (independent page) ============ -->
 <div class="page" id="page-stories">
   <section class="page-head" data-glyph="事" style="padding-top:56px;">
-    <div class="container" id="edit-c7" data-editable-region="1">
+    <!-- edit-c7：可編輯區域，工程師直接改本區塊程式碼時，記得把 data-content-version 數字調高，否則管理員舊的網頁存檔會蓋掉這次修改（詳見上方 CONTENT_KEY_PREFIX 附近的完整說明）。 -->
+    <div class="container" id="edit-c7" data-editable-region="1" data-content-version="1">
       <div class="eyebrow">故事專區</div>
       <h2 class="title">靈帝殿小故事</h2>
       <p class="lede">點選展開，閱讀關於靈帝殿班頭源流、迎王祭典軼事與神蹟顯靈的地方傳說。此分頁已獨立於「廟宇資訊」之外，方便日後持續擴充新故事。</p>
@@ -1501,7 +1694,8 @@
 <!-- ============ VISIT ============ -->
 <div class="page" id="page-visit">
   <section class="page-head" data-glyph="拜" style="padding-top:56px;">
-    <div class="container" id="edit-c12" data-editable-region="1">
+    <!-- edit-c12：可編輯區域，工程師直接改本區塊程式碼時，記得把 data-content-version 數字調高，否則管理員舊的網頁存檔會蓋掉這次修改（詳見上方 CONTENT_KEY_PREFIX 附近的完整說明）。 -->
+    <div class="container" id="edit-c12" data-editable-region="1" data-content-version="1">
       <div class="eyebrow">廟宇資訊展示</div>
       <h2 class="title">參拜資訊</h2>
       <div class="info-grid">
@@ -1693,10 +1887,32 @@
 </div>
 
 <footer>
-  <div class="footer-motif" aria-hidden="true">
-    <svg viewBox="0 0 40 40">
-      <path d="M6 24 Q10 14 20 16 Q26 6 34 14 Q30 22 22 20 Q16 28 6 24Z" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linejoin="round"/>
-    </svg>
+  <div class="footer-couplets" aria-hidden="true">
+    <span class="footer-lion">
+      <svg viewBox="0 0 40 44">
+        <circle cx="20" cy="20" r="12" fill="none" stroke="var(--gold)" stroke-width="1.8"/>
+        <path d="M9 13 Q14 3 20 7 Q26 3 31 13" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="15.5" cy="19" r="1.5" fill="var(--gold)"/>
+        <circle cx="24.5" cy="19" r="1.5" fill="var(--gold)"/>
+        <path d="M15.5 25 Q20 28.5 24.5 25" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <div class="couplet-panel"><span>風調雨順</span></div>
+    <div class="footer-motif" aria-hidden="true">
+      <svg viewBox="0 0 40 40">
+        <path d="M6 24 Q10 14 20 16 Q26 6 34 14 Q30 22 22 20 Q16 28 6 24Z" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="couplet-panel"><span>國泰民安</span></div>
+    <span class="footer-lion">
+      <svg viewBox="0 0 40 44">
+        <circle cx="20" cy="20" r="12" fill="none" stroke="var(--gold)" stroke-width="1.8"/>
+        <path d="M9 13 Q14 3 20 7 Q26 3 31 13" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="15.5" cy="19" r="1.5" fill="var(--gold)"/>
+        <circle cx="24.5" cy="19" r="1.5" fill="var(--gold)"/>
+        <path d="M15.5 25 Q20 28.5 24.5 25" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </span>
   </div>
   <div>© 東津代天府靈帝殿．屏東縣東港鎮盛漁里</div>
   <div style="margin-top:6px;opacity:.85;">網站範例版本，正式資料請由廟方確認後更新</div>
@@ -1738,6 +1954,70 @@ const ADMIN_EMAILS = [
 
 const CONTENT_KEY_PREFIX = 'content-override:';
 const NOTICES_CONTAINER_ID = 'edit-c3';
+
+/* ====================================================================
+   給未來維護這個網站的人（不管是工程師還是其他 AI 助理）看的說明：
+
+   這個網站有一套「可編輯區域」系統，讓不會寫程式的廟方管理員可以直接
+   在網頁上登入、修改文字內容（例如公告、廟史沿革），不需要碰程式碼。
+
+   運作方式：
+   - HTML 裡凡是加了 [data-editable-region="1"] 屬性的 <div class="container">，
+     都是「可編輯區域」。
+   - 管理員登入後按「開始編輯內容」，這些區域會變成可以直接打字修改
+     （contenteditable），改完按「存檔」，內容就會寫進雲端資料庫
+     （Firestore，collection: "kv"），所有訪客都會看到最新版本。
+   - 網頁每次載入時，會執行 loadAllContentOverrides()，把雲端存的內容
+     蓋到對應的區域上，蓋掉 HTML 原始碼裡寫的內容。
+
+   ⚠️ 這代表一個很重要、很容易踩雷的地方：
+   如果某個 [data-editable-region] 區塊「曾經」被管理員存過檔一次，
+   之後不管工程師怎麼直接修改這個區塊的 HTML 原始碼、怎麼 push、
+   怎麼重新部署，畫面上永遠只會顯示雲端存的那份舊內容，
+   因為 loadAllContentOverrides() 會在頁面載入時把它蓋回去。
+   （這個問題實際發生過：2026/7/27，神尊照片區塊 #edit-c5 就是因為
+   這個原因，改了老半天程式碼都沒用，最後才發現是被雲端舊存檔蓋掉。）
+
+   解決辦法有兩種，看你想讓這個區塊由誰主導：
+
+   【方案一】這個區塊以後只想讓工程師改程式碼，不想再被管理員的網頁
+   編輯功能蓋掉 → 直接把該區塊的 data-editable-region="1" 屬性整個
+   拿掉即可（參考下面 #edit-c5 神尊照片區塊，就是這樣處理的）。
+   拿掉之後，管理員登入編輯模式時，這個區塊也不會再顯示成可編輯，
+   loadAllContentOverrides() 也完全不會去理會它，永遠只讀 HTML 原始碼。
+
+   【方案二】這個區塊還是想讓管理員可以繼續用網頁編輯，但工程師偶爾
+   也想直接改程式碼、而且改完希望立刻蓋過管理員舊的存檔 → 幫該區塊
+   加上 data-content-version="數字" 屬性（見下方「版本比對機制」），
+   工程師每次直接改這個區塊的程式碼時，把版本號調高一碼，
+   系統就會自動偵測到「程式碼版本」比「雲端存檔版本」新，改用程式碼
+   內容，不需要手動操作 Firestore 或 console。管理員之後只要重新
+   存檔一次，就會存成新版本、重新取得主導權，直到工程師再次調高
+   版本號為止。
+
+   目前狀態（2026/7/27）：
+   - #edit-c5（神尊照片區塊）：採方案一，已移除 data-editable-region，
+     永久由程式碼控制，管理員編輯工具不會顯示這個區塊。
+   - #edit-c1 / c2 / c3 / c4 / c7 / c12：採方案二，都已加上
+     data-content-version="1"，工程師直接改這些區塊的程式碼時，
+     記得把版本號調高（例如改成 "2"），否則管理員舊的存檔仍會生效。
+   ==================================================================== */
+
+/* ------------------------------------------------------------------
+   版本比對機制（saveAllEdits / loadAllContentOverrides 的實際邏輯）
+   - 管理員存檔時，會把「當下的 data-content-version 數字」跟內容
+     一起存進雲端，格式是 JSON：{ html: "...", version: "1" }。
+   - 頁面載入時，比對「雲端存的 version」跟「目前 HTML 原始碼裡寫的
+     data-content-version」是否一致：
+       - 一致 → 套用雲端內容（管理員的編輯持續生效）。
+       - 不一致（代表工程師事後調高過版本號）→ 不套用雲端內容，
+         保留 HTML 原始碼裡的最新版本。
+   - 沒有標 data-content-version 屬性的區塊，版本一律視為 "0"。
+   - 相容處理：本機制上線之前存的舊資料是「純字串」格式（沒有版本號
+     包裝），JSON.parse 會失敗，這種情況會直接當作舊版沿用（維持
+     過去的行為，一律套用），等管理員之後用新版網頁重新存檔一次，
+     才會轉換成新的 {html, version} 格式。
+   ------------------------------------------------------------------ */
 
 /* ------------------------------------------------------------------
    STORAGE LAYER
@@ -1873,11 +2153,23 @@ function showToast(msg){
   showToast._t = setTimeout(()=>t.classList.remove('show'), 2200);
 }
 
+/* ------------------------------------------------------------------
+   版本比對機制（讓工程師改程式碼、管理員改網頁編輯，兩者互不衝突）
+   - 每個可編輯區域的 HTML 上可加 data-content-version="數字"。
+   - 管理員存檔時，會把「當下的版本號」跟內容一起存進雲端。
+   - 網頁載入時，如果雲端存的版本號 跟 目前程式碼裡寫的版本號 不一致
+     （代表工程師事後改過程式碼、把版本號調高了），就會直接改用
+     程式碼裡的最新內容，不會被舊的雲端存檔蓋掉。
+   - 管理員之後只要重新存檔一次，就會產生「新版本」的雲端覆蓋，
+     直到工程師再次調高版本號為止。
+   - 沒有標 data-content-version 的區塊，版本一律視為 "0"。
+   ------------------------------------------------------------------ */
 async function saveAllEdits(){
   const regions = document.querySelectorAll('[data-editable-region]');
   try{
     for(const el of regions){
-      await storeSet(CONTENT_KEY_PREFIX + el.id, el.innerHTML);
+      const version = el.dataset.contentVersion || '0';
+      await storeSet(CONTENT_KEY_PREFIX + el.id, JSON.stringify({ html: el.innerHTML, version }));
     }
     showToast('已儲存變更');
   }catch(e){
@@ -1888,8 +2180,19 @@ async function saveAllEdits(){
 async function loadAllContentOverrides(){
   const regions = document.querySelectorAll('[data-editable-region]');
   for(const el of regions){
-    const val = await storeGet(CONTENT_KEY_PREFIX + el.id);
-    if(val){ el.innerHTML = val; }
+    const raw = await storeGet(CONTENT_KEY_PREFIX + el.id);
+    if(!raw) continue;
+    const currentVersion = el.dataset.contentVersion || '0';
+    let parsed = null;
+    try{ parsed = JSON.parse(raw); }catch(e){ /* 舊格式（純字串），視為沒有版本號 */ }
+    if(parsed && typeof parsed === 'object' && 'html' in parsed){
+      // 新格式：只有雲端版本號跟目前程式碼版本號一致時，才套用雲端內容
+      if(parsed.version === currentVersion){ el.innerHTML = parsed.html; }
+      // 版本號不一致（工程師調高過版本號）→ 保留程式碼原本內容，不套用舊存檔
+    }else{
+      // 舊格式的存檔（本次更新之前存的），沿用舊行為，直接套用
+      el.innerHTML = raw;
+    }
   }
   rebindNoticeDeleteButtons();
 }

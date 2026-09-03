@@ -1,0 +1,4 @@
+/_reference/
+/node_modules/
+/_site/
+.env
